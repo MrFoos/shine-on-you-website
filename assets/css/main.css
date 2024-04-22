@@ -50,7 +50,7 @@ svg,img { max-width: 100%; height: auto; }
   1. >>> Headr Style
 ----------------------------------------------------------------*/
 .ds-header{ padding-top:2.5rem; padding-bottom: 7.8125rem; position: relative;  }
-.ds-logo a{ display: inline-block; background-color: #CBFE00; font-weight: 600; font-size: 1.125rem; padding: 0  0.4375rem; color: #000}
+.ds-logo a{ display: inline-block; background-color: #000; font-weight: 600; font-size: 1.125rem; padding: 0  0.4375rem; color: #000}
 .ds-logo a:hover,.ds-logo a:focus{color: #000}
 /*-----------------------------------------------------------------
   2. >>> Banner Style
@@ -62,8 +62,8 @@ svg,img { max-width: 100%; height: auto; }
 .ds-social{ list-style: none; display: flex; align-items: center;margin-top: 2.5rem }
 .ds-social li{ margin-right: 15px }
 .ds-social li:alst-child{ margin-right: 0 }
-.ds-social a{ width: 30px; height: 30px; background-color: #CBFE00; border-radius: 100%; text-align: center; display: flex; justify-content: center; align-items: center; font-size:1.25rem; color:#000 }
-.ds-social li:hover a{background-color: #CBFE00; color:#000 }
+.ds-social a{ width: 30px; height: 30px; background-color: #000; border-radius: 100%; text-align: center; display: flex; justify-content: center; align-items: center; font-size:1.25rem; color:#000 }
+.ds-social li:hover a{background-color: #000; color:#C7F900}
 
 .ds-banner figure{width: 370px; position: relative;}
 .ds-banner figure figcaption{ color: #FFF; font-size:1.875rem; position: absolute; bottom: 0; width: 100%; text-align: center; padding-bottom:2.5rem  }
@@ -75,7 +75,7 @@ svg,img { max-width: 100%; height: auto; }
 .ds-resume-section p{ color:#9C9C9C; font-size: 1rem; line-height: 1.875rem }
 .ds-download-button{ display: inline-block; color: #CBFE00; border: 1px solid #CBFE00; letter-spacing: 3px; text-transform: uppercase; font-size: 0.75rem; padding:0.875rem 1.25rem; margin-top: 30px  }
 .ds-download-button i{ font-size:1.125rem; vertical-align: middle;  }
-.ds-download-button:hover{ color: #000; background-color:#CBFE00  }
+.ds-download-button:hover{ color: #000; background-color:#000  }
 /*-----------------------------------------------------------------
   4. >>> Projects Style
 ----------------------------------------------------------------*/
@@ -107,7 +107,7 @@ svg,img { max-width: 100%; height: auto; }
 /*-----------------------------------------------------------------
   6. >>> Email Style
 ----------------------------------------------------------------*/
-.ds-email-section{padding: 7.5rem 0; background-color: #CBFE00; text-align: center;}
+.ds-email-section{padding: 7.5rem 0; background-color: #000; text-align: center;}
 .ds-email-section h2{ font-size: 3.75rem;color: #000; margin-bottom: 1.875rem }
 .ds-email-section a{ font-size:1.25rem; font-weight: 500; text-decoration: underline;  }
 .ds-email-section a:hover{ color: #000; text-decoration: none; }
