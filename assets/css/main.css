@@ -27,8 +27,8 @@ Theme Name: Borstein
 	--margin-100:6.25rem;
 	--margin-120:7.5rem;   
 }
-html {font-family: 'Poppins', sans-serif;background-color:#2A2A2A}
-body {font-family: 'Poppins', sans-serif;overflow-x: hidden; background-color:#2A2A2A; font-weight:400;font-style: normal; color: #FFF; font-size: var(--font_14)}
+html {font-family: 'Poppins', sans-serif;background-color:#000}
+body {font-family: 'Poppins', sans-serif;overflow-x: hidden; background-color:#000; font-weight:400;font-style: normal; color: #FFF; font-size: var(--font_14)}
 a,a:hover,a:focus,i,input,button,input:focus,.transition {text-decoration: none;outline: none;transition-delay: 0s;transition-duration: 0.4s;transition-property: all;transition-timing-function: ease;box-shadow: none;}
 a{color: #000}
 iframe {border: 0;outline: none;}
