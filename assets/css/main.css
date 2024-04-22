@@ -62,7 +62,7 @@ svg,img { max-width: 100%; height: auto; }
 .ds-social{ list-style: none; display: flex; align-items: center;margin-top: 2.5rem }
 .ds-social li{ margin-right: 15px }
 .ds-social li:alst-child{ margin-right: 0 }
-.ds-social a{ width: 30px; height: 30px; background-color: #CBFE00; border-radius: 100%; text-align: center; display: flex; justify-content: center; align-items: center; font-size:1.25rem; color:#2A2A2A }
+.ds-social a{ width: 30px; height: 30px; background-color: #CBFE00; border-radius: 100%; text-align: center; display: flex; justify-content: center; align-items: center; font-size:1.25rem; color:#000 }
 .ds-social li:hover a{background-color: #CBFE00; color:#000 }
 
 .ds-banner figure{width: 370px; position: relative;}
