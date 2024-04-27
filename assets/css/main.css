@@ -114,7 +114,7 @@ svg,img { max-width: 100%; height: auto; }
 /*-----------------------------------------------------------------
   7. >>> Footer Style
 ----------------------------------------------------------------*/
-.ds-footer{ padding: 2.5rem 0; text-align: center; color: #CECECE; font-size: 1.25rem }
+.ds-footer{ padding: 2.5rem 0; text-align: center; color: #CECECE; font-size: xx-small }
 .ds-footer a{color: #CECECE }
 .ds-footer a:hover{color: #CECECE; text-decoration: underline; }
 /*-------------------------------------------------------------------------------
