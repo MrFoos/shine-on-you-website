@@ -49,7 +49,7 @@ svg,img { max-width: 100%; height: auto; }
 /*-----------------------------------------------------------------
   1. >>> Headr Style
 ----------------------------------------------------------------*/
-.ds-header{ padding-top:2.5rem; padding-bottom: 7.8125rem; position: relative;  }
+.ds-header{ padding-top:2.5rem; padding-bottom: 7.8125rem; position: relative; font-size: xxx-large}
 .ds-logo a{ display: inline-block; background-color: #000; font-weight: 600; font-size: 1.125rem; padding: 0  0.4375rem; color: ##ffffff}
 .ds-logo a:hover,.ds-logo a:focus{color: ##ffffff}
 /*-----------------------------------------------------------------
