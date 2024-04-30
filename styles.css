@@ -76,20 +76,32 @@ h2 {
 
 .event {
     margin-bottom: 20px;
-     height: 100px;
+     height: 140px;
      width: auto;
-     background-color: #333;
+     background-color: #000;
      border-radius: 25px;
      font-weight: bold;
      font-size: 20px;
-     color: #FFFFFF;
+     color: #FFF;
      box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+     border-style: solid;
 }
 
 .event-date {
   padding-top: 20px;
   padding-bottom: 15px;
 }
+
+.event-location {
+  padding-bottom: 15px;
+}
+
+.tickets {
+ a {
+    color: blue;
+  }
+}
+
 
 
 
