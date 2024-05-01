@@ -103,7 +103,7 @@ h2 {
 
 .tickets {
  a {
-    color: blue;
+    color: white;
   }
 }
 
@@ -165,6 +165,9 @@ footer {
 .social-icons {
     display: flex;
     justify-content: center;
+    a {
+        color: white;
+      }
 }
 
 .fb {
