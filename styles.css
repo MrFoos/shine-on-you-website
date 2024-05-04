@@ -58,7 +58,6 @@ h2 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
-    margin-top: 20px;
 }
 
 .image-gallery img {
@@ -68,6 +67,7 @@ h2 {
     display: flex;
     justify-content: center;
     box-shadow: 0 1px 10px #FFFFFF;
+    cursor: pointer;
 
 }
 
