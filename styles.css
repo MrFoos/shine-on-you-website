@@ -13,10 +13,10 @@ padding:20px 0;
 text-align:center
 }
 
-header img{
-max-width:100%;
-height:auto
-}
+// header img{
+// max-width:100%;
+// height:auto
+// }
 
 
 section{
@@ -137,16 +137,16 @@ justify-content:center;
  }
 }
 
-.fb{
-padding-right:10px
+.facebook{
+padding-right:20px
 }
 
-.insta{
-padding-right:10px
+.instagram{
+padding-right:20px
 }
 
-.yt{
-padding-right:10px
+.youtube{
+padding-right:20px
 }
 
 .icon{
