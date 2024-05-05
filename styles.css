@@ -132,8 +132,9 @@ cursor:pointer
 .social-icons{
 display:flex;
 justify-content:center;
-acolor:#fff
-}
+ a {
+  color:#fff
+ }
 }
 
 .fb{
