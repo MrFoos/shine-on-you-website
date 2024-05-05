@@ -1,204 +1,166 @@
-/* Global Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #000000;
-}
-
-/* Header Styles */
-header {
-    background-color: #000000;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-}
-
-header img {
-    max-width: 100%;
-    height: auto;
-}
-
-header h1 {
-    margin-top: 10px;
-    font-size: 50px;
-}
-
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-nav a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    background-color: #555;
-}
-
-nav a:hover {
-    background-color: #777;
-}
-
-/* Section Styles */
-section {
-    padding: 20px;
-}
-
-h2 {
-    text-align: center;
-    font-size: 30px;
+body{
+font-family:Arial,sans-serif;
+margin:0;
+padding:0;
+background-color:#000
 }
 
 
-.image-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+header{
+background-color:#000;
+color:#fff;
+padding:20px 0;
+text-align:center
 }
 
-.image-gallery img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    box-shadow: 0 1px 10px #FFFFFF;
-    cursor: pointer;
-
+header img{
+max-width:100%;
+height:auto
 }
 
-.tour-heading {
-    color: #FFF
+
+section{
+padding:20px
 }
 
-.upcoming-events {
-    margin-top: 20px;
-    text-align: center;
+h2{
+text-align:center;
+font-size:30px
 }
 
-.event {
-     margin-bottom: 20px;
-     height: 140px;
-     width: auto;
-     background-color: #1E1D1D;
-     border-radius: 25px;
-     font-weight: bold;
-     font-size: 20px;
-     color: #FFF;
-     box-shadow: 0 1px 10px #FFFFFF;
+.image-gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px
 }
 
-.event-date {
-  padding-top: 20px;
-  padding-bottom: 15px;
+.image-gallery img{
+aspect-ratio:auto 640 / 360;
+max-width:100%;
+height:auto;
+border-radius:5px;
+display:flex;
+justify-content:center;
+box-shadow:0 1px 10px #FFF;
+cursor:pointer
 }
 
-.event-location {
-  padding-bottom: 15px;
+.tour-heading{
+color:#FFF
 }
 
-.tickets {
-color: red;
+.upcoming-events{
+margin-top:20px;
+text-align:center
+}
+
+.event{
+margin-bottom:20px;
+height:140px;
+width:auto;
+background-color:#1E1D1D;
+border-radius:25px;
+font-weight:700;
+font-size:20px;
+color:#FFF;
+box-shadow:0 1px 10px #FFF
+}
+
+.event-date{
+padding-top:20px;
+padding-bottom:15px
+}
+
+.event-location{
+padding-bottom:15px
+}
+
+.tickets{
+color:red;
  a {
-    color: red;
-  }
-}
-
-
-
-
-
-
-/* Footer Styles */
-footer {
-    background-color: #000000;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    font-size: small;
-}
-
-
-/* Modal Styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    padding-top: 50px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.9);
-}
-
-.modal-content {
-    margin: auto;
-    display: block;
-    max-width: 80%;
-    max-height: 80%;
-}
-
-.close {
-    color: #fff;
-    position: absolute;
-    top: 10px;
-    right: 25px;
-    font-size: 35px;
-    font-weight: bold;
-    transition: 0.3s;
-    cursor: pointer;
-}
-
-.close:hover,
-.close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Social media icons */
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    a {
-        color: white;
-      }
-}
-
-.fb {
-    padding-right: 10px;
-}
-
-.insta {
-    padding-right: 10px;
-}
-
-.yt {
-    padding-right: 10px;
-}
-
-
-.icon {
-    color: #000;
-    font-size: 30px;
-    margin: 0 10px;
-    transition: all 0.5s ease;
-
-}
-
-.icon:hover {
-    transform: scale(1.2);
-}
-
-@media (max-width: 600px) {
-    .icon {
-        font-size: 24px;
+    color:red
     }
 }
 
+
+footer{
+background-color:#000;
+color:#fff;
+text-align:center;
+padding:20px 0;
+font-size:small
+}
+
+
+.modal{
+display:none;
+position:fixed;
+z-index:1;
+padding-top:50px;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background-color:rgba(0,0,0,0.9)
+}
+
+.modal-content{
+margin:auto;
+display:block;
+max-width:80%;
+max-height:80%
+}
+
+.close{
+color:#fff;
+position:absolute;
+top:10px;
+right:25px;
+font-size:35px;
+font-weight:700;
+transition:.3s;
+cursor:pointer
+}
+
+.close:hover,.close:focus{
+color:#bbb;
+text-decoration:none;
+cursor:pointer
+}
+
+
+.social-icons{
+display:flex;
+justify-content:center;
+acolor:#fff
+}
+}
+
+.fb{
+padding-right:10px
+}
+
+.insta{
+padding-right:10px
+}
+
+.yt{
+padding-right:10px
+}
+
+.icon{
+color:#000;
+font-size:30px;
+margin:0 10px;
+transition:all .5s ease
+}
+
+.icon:hover{
+transform:scale(1.2)
+}
+
+@media (max-width: 600px){
+.icon{
+font-size:24px
+}
+}
