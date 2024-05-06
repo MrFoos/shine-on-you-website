@@ -1,89 +1,89 @@
 body{
-font-family:Arial,sans-serif;
-margin:0;
-padding:0;
-background-color:#000
+    font-family:Arial,sans-serif;
+    margin:0;
+    padding:0;
+    background-color:#000
 }
 
 
 header{
-background-color:#000;
-color:#fff;
-padding:20px 0;
-text-align:center
+    background-color:#000;
+    color:#fff;
+    padding:20px 0;
+    text-align:center
 }
 
 
 section{
-padding:20px
+    padding:20px
 }
 
 h2{
-text-align:center;
-font-size:30px
+    text-align:center;
+    font-size:30px
 }
 
 .image-gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px
 }
 
 .image-gallery img{
-aspect-ratio:auto 640 / 360;
-max-width:100%;
-height:auto;
-border-radius:5px;
-display:flex;
-justify-content:center;
-box-shadow:0 1px 10px #FFF;
-cursor:pointer
+    aspect-ratio:auto 640 / 360;
+    max-width:100%;
+    height:auto;
+    border-radius:5px;
+    display:flex;
+    justify-content:center;
+    box-shadow:0 1px 10px #FFF;
+    cursor:pointer
 }
 
 .tour-heading{
-color:#FFF
+    color:#FFF
 }
 
 .upcoming-events{
-margin-top:20px;
-text-align:center
+    margin-top:20px;
+    text-align:center
 }
 
 .event{
-margin-bottom:20px;
-height:140px;
-width:auto;
-background-color:#1E1D1D;
-border-radius:25px;
-font-weight:700;
-font-size:20px;
-color:#FFF;
-box-shadow:0 1px 10px #FFF
+    margin-bottom:20px;
+    height:140px;
+    width:auto;
+    background-color:#1E1D1D;
+    border-radius:25px;
+    font-weight:700;
+    font-size:20px;
+    color:#FFF;
+    box-shadow:0 1px 10px #FFF
 }
 
 .event-date{
-padding-top:20px;
-padding-bottom:15px
+    padding-top:20px;
+    padding-bottom:15px
 }
 
 .event-location{
-padding-bottom:15px
+    padding-bottom:15px
 }
 
 .tickets{
-color:red;
- a {
-    color:red
+    color:red;
+    a {
+      color:red
     }
 }
 
 
 footer{
-background-color:#000;
-color:#fff;
-text-align:center;
-padding:20px 0;
-font-size:small
+    background-color:#000;
+    color:#fff;
+    text-align:center;
+    padding:20px 0;
+    font-size:small
 }
 
 
