@@ -5,82 +5,106 @@
   <link rel="preload" as="image" href="images/IMG_EBD8FCF994F8-1.webp" />
   <link rel="preload" as="image" href="images/IMG_CCBD63C378ED-1.webp" />
   <link rel="preload" as="image" href="images/IMG_A3DD621C5620-1.webp" />
+  <link rel="preload" as="image" href="images/IMG_3DBE2EF3CF48-1.webp" />
+  <link rel="preload" as="image" href="images/IMG_25C536F779A3-1.webp" />
+  <link rel="preload" as="image" href="images/IMG_0055A97A8E95-1.webp" />
   <style>  header img{
-  max-width:100%;
-  height:auto
-  }</style>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        max-width:100%;
+        height:auto
+    }</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shine On You</title>
   <meta name="description" content="Shine On You is a Pink Floyd tribute band from Norway.">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://www.facebook.com">
   <link rel="preconnect" href="https://www.instagram.com">
   <link rel="preconnect" href="https://www.youtube.com">
+  <script src="script.js" defer></script>
 </head>
 <body>
-<header>
-  <img width="21361" height="7551" src="images/Banner Web.png" alt="logo">
-</header>
-<section id="gallery1" class="image-gallery">
-  <img width="1290" height="860" src="images/IMG_EBD8FCF994F8-1.webp" alt="Gallery Image 1" onclick="openModal(this)">
-  <img width="1290" height="860" src="images/IMG_CCBD63C378ED-1.webp" alt="Gallery Image 2" onclick="openModal(this)">
-  <img width="1290" height="860" src="images/IMG_A3DD621C5620-1.webp" alt="Gallery Image 3" onclick="openModal(this)">
-</section>
-  <section id="gallery2" class="image-gallery">
-    <img width="1218" height="812" src="images/IMG_3DBE2EF3CF48-1.webp" alt="Gallery Image 4" onclick="openModal(this)">
-    <img width="1290" height="860" src="images/IMG_25C536F779A3-1.webp" alt="Gallery Image 5" onclick="openModal(this)">
-    <img width="1290" height="860" src="images/IMG_0055A97A8E95-1.webp" alt="Gallery Image 6" onclick="openModal(this)">
 
-  <!-- Add more images as needed -->
-  <div id="myModal" class="modal">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img class="modal-content" id="modal-img" alt="" src="">
+<div class="container">
+  <header>
+    <img width="21361" height="7551" src="images/Banner Web.png" alt="logo">
+  </header>
+  <div class="slider-wrapper">
+    <button id="prev-slide" class="slide-button material-symbols-rounded">
+      chevron_left
+    </button>
+    <ul class="image-list">
+      <li>
+        <img class="image-item" src="images/IMG_EBD8FCF994F8-1.webp" alt="img-1" />
+      </li>
+      <li>
+        <img class="image-item" src="images/IMG_CCBD63C378ED-1.webp" alt="img-2" />
+      </li>
+      <li>
+        <img class="image-item" src="images/IMG_A3DD621C5620-1.webp" alt="img-3" />
+      </li>
+      <li>
+        <img class="image-item" src="images/IMG_3DBE2EF3CF48-1.webp" alt="img-4" />
+      </li>
+      <li>
+        <img class="image-item" src="images/IMG_25C536F779A3-1.webp" alt="img-5" />
+      </li>
+      <li>
+        <img class="image-item" src="images/IMG_0055A97A8E95-1.webp" alt="img-6" />
+      </li>
+    </ul>
+    <button id="next-slide" class="slide-button material-symbols-rounded">
+      chevron_right
+    </button>
   </div>
-</section>
-<section id="events" class="upcoming-events">
-  <div class="tour-heading">
-  <h2>Tour 2024</h2>
-  </div>
-  <div class="event">
-    <div class="event-date">16.03.2024</div>
-    <div class="event-location">Hamar Kulturhus, Hamar Norway</div>
-    <div class="tickets">SOLD OUT!</div>
-  </div>
-  <div class="event">
-    <div class="event-date">19.09.2024</div>
-    <div class="event-location">To be announced</div>
-    <div class="tickets"></div>
-  </div>
-  <div class="event">
-    <div class="event-date">20.09.2024</div>
-    <div class="event-location">Vara Konserthus, Vara Sweden</div>
-    <div class="tickets">
-      <a href="https://biljetter.varakonserthus.se/sv/buyingflow/tickets/19179/">TICKETS</a>
+  <div class="slider-scrollbar">
+    <div class="scrollbar-track">
+      <div class="scrollbar-thumb"></div>
     </div>
   </div>
-  <div class="event">
-    <div class="event-date">21.09.2024</div>
-    <div class="event-location">To be announced</div>
-    <div class="tickets"></div>
-  </div>
-</section>
-<section id="social-media" class="social-media">
-  <div class="social-icons">
-    <a href="https://www.facebook.com/ShineOnU21" class="facebook" aria-label="Visit our Facebook page"><i class="fab fa-facebook-f fa-2x"></i></a>
-    <a href="https://www.instagram.com/shineonyou_official/" class="instagram" aria-label="Visit our Instagram page"><i class="fab fa-instagram fa-2x"></i></a>
-    <a href="https://www.youtube.com/@shineonyou-gq7uc" class="youtube" aria-label="Visit our Youtube page"><i class="fab fa-youtube fa-2x"></i></a>
-  </div>
-</section>
-<footer>
-  <p>contact us: shineonyouband@gmail.com</p>
-   <p>Photo credit: Espen Håkonsen</p>
-  <p>&copy; 2024 Shine On You DA. All rights reserved.</p>
-</footer>
-<script src="script.js" defer></script>
+
+  <section id="events" class="upcoming-events">
+    <div class="tour-heading">
+      <h2>Tour 2024</h2>
+    </div>
+    <div class="event">
+      <div class="event-date">16.03.2024</div>
+      <div class="event-location">Hamar Kulturhus, Hamar Norway</div>
+      <div class="tickets">SOLD OUT!</div>
+    </div>
+    <div class="event">
+      <div class="event-date">19.09.2024</div>
+      <div class="event-location">To be announced</div>
+      <div class="tickets"></div>
+    </div>
+    <div class="event">
+      <div class="event-date">20.09.2024</div>
+      <div class="event-location">Vara Konserthus, Vara Sweden</div>
+      <div class="tickets">
+        <a href="https://biljetter.varakonserthus.se/sv/buyingflow/tickets/19179/">TICKETS</a>
+      </div>
+    </div>
+    <div class="event">
+      <div class="event-date">21.09.2024</div>
+      <div class="event-location">To be announced</div>
+      <div class="tickets"></div>
+    </div>
+  </section>
+  <section id="social-media" class="social-media">
+    <div class="social-icons">
+      <a href="https://www.facebook.com/ShineOnU21" class="facebook" aria-label="Visit our Facebook page"><i class="fab fa-facebook-f fa-2x"></i></a>
+      <a href="https://www.instagram.com/shineonyou_official/" class="instagram" aria-label="Visit our Instagram page"><i class="fab fa-instagram fa-2x"></i></a>
+      <a href="https://www.youtube.com/@shineonyou-gq7uc" class="youtube" aria-label="Visit our Youtube page"><i class="fab fa-youtube fa-2x"></i></a>
+    </div>
+  </section>
+  <footer>
+    <p>contact us: shineonyouband@gmail.com</p>
+    <p>Photo credit: Espen Håkonsen</p>
+    <p>&copy; 2024 Shine On You DA. All rights reserved.</p>
+  </footer>
+</div>
 </body>
 </html>
