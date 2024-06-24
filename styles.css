@@ -152,7 +152,7 @@ h2{
 .event{
     margin-bottom:20px;
     padding-bottom: 30px;
-    height:140px;
+    height: auto;
     width:100%;
     background-color:#1E1D1D;
     border-radius:25px;
