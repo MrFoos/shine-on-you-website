@@ -261,3 +261,267 @@ footer{
     width: 20%;
   }
 }
+
+/* ── Admin panel ── */
+.admin-login {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  color: #fff;
+}
+
+.admin-login h1 {
+  margin-bottom: 24px;
+}
+
+.admin-login form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 320px;
+}
+
+.admin-login input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #1e1e1e;
+  color: #fff;
+  font-size: 16px;
+}
+
+.admin-login button {
+  padding: 10px;
+  background: #e00;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.admin-error {
+  color: #f66;
+  font-size: 14px;
+}
+
+.admin-dashboard {
+  min-height: 100vh;
+  background: #111;
+  color: #fff;
+  padding: 24px;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.admin-header h1 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.admin-signout {
+  background: #333;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 12px;
+}
+
+.admin-tab {
+  background: #222;
+  color: #aaa;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.admin-tab.active {
+  background: #e00;
+  color: #fff;
+}
+
+.admin-content {
+  max-width: 900px;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.admin-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-form-row label {
+  font-size: 13px;
+  color: #aaa;
+}
+
+.admin-form-row input,
+.admin-form-row select,
+.admin-form-row textarea {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #1e1e1e;
+  color: #fff;
+  font-size: 15px;
+}
+
+.admin-form-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.admin-form-actions button,
+.admin-editor button,
+.admin-btn-add {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  background: #e00;
+  color: #fff;
+}
+
+.admin-form-actions button[type="button"] {
+  background: #333;
+}
+
+.admin-btn-add {
+  margin-bottom: 16px;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.admin-table th {
+  color: #aaa;
+  font-weight: normal;
+}
+
+.admin-table td button {
+  background: none;
+  border: none;
+  color: #e00;
+  cursor: pointer;
+  margin-right: 8px;
+  font-size: 13px;
+}
+
+.admin-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-editor textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #1e1e1e;
+  color: #fff;
+  font-size: 15px;
+  resize: vertical;
+}
+
+.admin-upload {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.admin-gallery-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-gallery-item img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.admin-gallery-item button,
+.admin-file-item button {
+  background: #333;
+  color: #f66;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.admin-video-list,
+.admin-file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-video-item,
+.admin-file-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #1e1e1e;
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+.admin-video-item span,
+.admin-file-item span {
+  flex: 1;
+}
+
+.admin-video-item a,
+.admin-file-item a {
+  color: #aaa;
+  font-size: 13px;
+}
