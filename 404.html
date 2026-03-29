@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script>
+      // SPA redirect hack for GitHub Pages deep links
+      // Redirects /admin/login → /?p=/admin/login, then index.html picks it up
+      var path = window.location.pathname;
+      window.location.replace(
+        window.location.origin + '/?p=' + encodeURIComponent(path)
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
