@@ -32,20 +32,22 @@ function EventCard({ event }) {
 export default function Events() {
   const [upcoming, setUpcoming] = useState([])
   const [past, setPast] = useState([])
+  const [settings, setSettings] = useState({ tour_heading: 'Tour 2026', past_shows_heading: 'Past shows 2026' })
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchEvents = async () => {
       const today = new Date().toISOString().split('T')[0]
-      const { data, error } = await supabase
-        .from('events')
-        .select('*')
-        .order('date', { ascending: true })
+      const [{ data, error }, { data: settingsData }] = await Promise.all([
+        supabase.from('events').select('*').order('date', { ascending: true }),
+        supabase.from('settings').select('tour_heading, past_shows_heading').eq('id', 1).single(),
+      ])
 
       if (!error && data) {
         setUpcoming(data.filter((e) => e.date >= today))
         setPast(data.filter((e) => e.date < today).reverse())
       }
+      if (settingsData) setSettings(settingsData)
       setLoading(false)
     }
 
@@ -57,7 +59,7 @@ export default function Events() {
   return (
     <section id="events" className="upcoming-events">
       <div className="tour-heading">
-        <h2>Tour 2026</h2>
+        <h2>{settings.tour_heading}</h2>
       </div>
       {upcoming.map((event) => (
         <EventCard key={event.id} event={event} />
@@ -65,7 +67,7 @@ export default function Events() {
       {past.length > 0 && (
         <>
           <div className="past-tour-heading">
-            <h2>Past shows 2026</h2>
+            <h2>{settings.past_shows_heading}</h2>
           </div>
           {past.map((event) => (
             <EventCard key={event.id} event={event} />

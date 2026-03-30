@@ -6,6 +6,7 @@ import VideoManager from './VideoManager'
 import GalleryManager from './GalleryManager'
 import PressKitManager from './PressKitManager'
 import ContactEditor from './ContactEditor'
+import SiteSettingsEditor from './SiteSettingsEditor'
 
 const TABS = [
   { id: 'events', label: 'Events' },
@@ -14,6 +15,7 @@ const TABS = [
   { id: 'gallery', label: 'Galleri' },
   { id: 'presskit', label: 'Press Kit' },
   { id: 'contact', label: 'Kontakt' },
+  { id: 'settings', label: 'Innstillinger' },
 ]
 
 export default function AdminDashboard() {
@@ -46,6 +48,7 @@ export default function AdminDashboard() {
         {activeTab === 'gallery' && <GalleryManager />}
         {activeTab === 'presskit' && <PressKitManager />}
         {activeTab === 'contact' && <ContactEditor />}
+        {activeTab === 'settings' && <SiteSettingsEditor />}
       </div>
     </div>
   )
