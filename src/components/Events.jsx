@@ -34,6 +34,7 @@ export default function Events() {
   const [past, setPast] = useState([])
   const [settings, setSettings] = useState({ tour_heading: 'Tour 2026', past_shows_heading: 'Past shows 2026' })
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -43,7 +44,9 @@ export default function Events() {
         supabase.from('settings').select('tour_heading, past_shows_heading').eq('id', 1).single(),
       ])
 
-      if (!error && data) {
+      if (error) {
+        setError(true)
+      } else if (data) {
         setUpcoming(data.filter((e) => e.date >= today))
         setPast(data.filter((e) => e.date < today).reverse())
       }
@@ -55,6 +58,11 @@ export default function Events() {
   }, [])
 
   if (loading) return null
+  if (error) return (
+    <section id="events" className="upcoming-events">
+      <p>Could not load shows. Please try again later.</p>
+    </section>
+  )
 
   return (
     <section id="events" className="upcoming-events">

@@ -5,19 +5,24 @@ import EventForm from './EventForm'
 export default function EventTable() {
   const [events, setEvents] = useState([])
   const [editing, setEditing] = useState(null) // event object or 'new'
+  const [fetchError, setFetchError] = useState(null)
+  const [saveError, setSaveError] = useState(null)
 
   const fetch = async () => {
-    const { data } = await supabase.from('events').select('*').order('date')
-    setEvents(data ?? [])
+    const { data, error } = await supabase.from('events').select('*').order('date')
+    if (error) setFetchError('Klarte ikke hente arrangementer.')
+    else setEvents(data ?? [])
   }
 
   useEffect(() => { fetch() }, [])
 
   const handleSave = async (form) => {
-    if (editing === 'new') {
-      await supabase.from('events').insert([form])
-    } else {
-      await supabase.from('events').update(form).eq('id', editing.id)
+    const { error } = editing === 'new'
+      ? await supabase.from('events').insert([form])
+      : await supabase.from('events').update(form).eq('id', editing.id)
+    if (error) {
+      setSaveError('Lagring feilet. Prøv igjen.')
+      return
     }
     setEditing(null)
     fetch()
@@ -25,23 +30,32 @@ export default function EventTable() {
 
   const handleDelete = async (id) => {
     if (!window.confirm('Slette dette arrangementet?')) return
-    await supabase.from('events').delete().eq('id', id)
+    const { error } = await supabase.from('events').delete().eq('id', id)
+    if (error) {
+      setSaveError('Sletting feilet. Prøv igjen.')
+      return
+    }
     fetch()
   }
 
   if (editing) {
     return (
-      <EventForm
-        initial={editing === 'new' ? null : editing}
-        onSave={handleSave}
-        onCancel={() => setEditing(null)}
-      />
+      <div>
+        {saveError && <p className="admin-error">{saveError}</p>}
+        <EventForm
+          initial={editing === 'new' ? null : editing}
+          onSave={handleSave}
+          onCancel={() => setEditing(null)}
+        />
+      </div>
     )
   }
 
   return (
     <div>
       <button className="admin-btn-add" onClick={() => setEditing('new')}>+ Nytt arrangement</button>
+      {fetchError && <p className="admin-error">{fetchError}</p>}
+      {saveError && <p className="admin-error">{saveError}</p>}
       <table className="admin-table">
         <thead>
           <tr>
