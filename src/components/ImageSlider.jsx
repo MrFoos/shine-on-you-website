@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react'
 
 const SLIDES = [
-  { src: '/images/P1092593Shine25@EspenHåkonsen47754888.webp', alt: 'img-1' },
-  { src: '/images/P1092053Shine25@EspenHåkonsen47754888.webp', alt: 'img-2' },
-  { src: '/images/P1092557Shine25@EspenHåkonsen47754888.webp', alt: 'img-3' },
-  { src: '/images/P1092034Shine25@EspenHåkonsen47754888.webp', alt: 'img-4' },
-  { src: '/images/P1102743Shine25@EspenHåkonsen47754888.webp', alt: 'img-5' },
-  { src: '/images/P1103000Shine25@EspenHåkonsen47754888.webp', alt: 'img-6' },
+  { src: '/images/gallery/P1092593Shine25@EspenHåkonsen47754888.webp', alt: 'img-1' },
+  { src: '/images/gallery/P1092053Shine25@EspenHåkonsen47754888.webp', alt: 'img-2' },
+  { src: '/images/gallery/P1092557Shine25@EspenHåkonsen47754888.webp', alt: 'img-3' },
+  { src: '/images/gallery/P1092034Shine25@EspenHåkonsen47754888.webp', alt: 'img-4' },
+  { src: '/images/gallery/P1102743Shine25@EspenHåkonsen47754888.webp', alt: 'img-5' },
+  { src: '/images/gallery/P1103000Shine25@EspenHåkonsen47754888.webp', alt: 'img-6' },
 ]
 
 export default function ImageSlider() {
