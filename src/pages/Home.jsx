@@ -1,6 +1,5 @@
 import Nav from '../components/Nav'
 import Header from '../components/Header'
-import ImageSlider from '../components/ImageSlider'
 import Events from '../components/Events'
 import SocialMedia from '../components/SocialMedia'
 import Footer from '../components/Footer'
@@ -10,7 +9,6 @@ export default function Home() {
     <div className="container">
       <Nav />
       <Header />
-      <ImageSlider />
       <Events />
       <SocialMedia />
       <Footer />
