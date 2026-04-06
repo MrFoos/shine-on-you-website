@@ -1,3 +1,4 @@
+import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 
 const MEMBERS = [
@@ -24,6 +25,7 @@ const BIO = [
 export default function AboutPage() {
   return (
     <div className="container">
+      <Nav />
       <section className="about-page">
         <h2>About</h2>
         <div className="about-bio">

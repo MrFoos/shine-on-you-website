@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 
 const IMAGES = [
@@ -52,6 +53,7 @@ export default function GalleryPage() {
 
   return (
     <div className="container">
+      <Nav />
       <section className="gallery-page">
         <h2>Gallery</h2>
 
