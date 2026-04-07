@@ -227,6 +227,16 @@ footer{
   color: #000;
 }
 
+.social-media {
+  padding: 48px 20px 32px;
+}
+
+@media (min-width: 900px) {
+  .social-media {
+    padding: 80px 20px 48px;
+  }
+}
+
 .social-icons{
     display:flex;
     justify-content:center;
