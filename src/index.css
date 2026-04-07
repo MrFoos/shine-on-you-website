@@ -10,7 +10,7 @@
 
 body {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   min-height: 100vh;
   background: #f1f4fd;
