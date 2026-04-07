@@ -233,7 +233,11 @@ footer{
 
 @media (min-width: 900px) {
   .social-media {
-    padding: 80px 20px 48px;
+    padding: 188px 20px 48px;
+  }
+
+  header {
+    padding-top: 36px;
   }
 }
 
