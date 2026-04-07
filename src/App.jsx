@@ -4,6 +4,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Home from './pages/Home'
 import AboutPage from './pages/AboutPage'
 import GalleryPage from './pages/GalleryPage'
+import TourPage from './pages/TourPage'
 import AdminLogin from './pages/admin/AdminLogin'
 import AdminDashboard from './pages/admin/AdminDashboard'
 
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/tour" element={<TourPage />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route
             path="/admin"
