@@ -231,9 +231,13 @@ footer{
   padding: 48px 20px 32px;
 }
 
-@media (min-width: 900px) {
+@media (max-width: 899px) {
   .social-media {
-    padding: 80px 20px 48px;
+    padding-top: 296px;
+  }
+
+  header {
+    padding-top: 36px;
   }
 }
 
