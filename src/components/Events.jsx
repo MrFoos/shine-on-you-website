@@ -11,19 +11,29 @@ function TicketLabel({ event }) {
   return <div>SOLD OUT!</div>
 }
 
-function EventCard({ event }) {
-  const date = new Date(event.date).toLocaleDateString('nb-NO', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-  })
+function EventCard({ event, past }) {
+  const d = new Date(event.date)
+  const day = String(d.getDate()).padStart(2, '0')
+  const month = d.toLocaleString('nb-NO', { month: 'short' }).toUpperCase().replace('.', '')
+  const year = d.getFullYear()
 
   return (
-    <div className="event">
-      <div className="event-date">{date}</div>
-      <div className="event-location">{event.venue}, {event.city} {event.country}</div>
-      <div className="tickets">
-        <TicketLabel event={event} />
+    <div className={`event${past ? ' event-past' : ''}`}>
+      <div className="event-date-block">
+        <span className="event-day">{day}</span>
+        <span className="event-month">{month}</span>
+        <span className="event-year">{year}</span>
+      </div>
+      <div className="event-details">
+        <div className="event-details-top">
+          <div className="event-info">
+            <span className="event-city">{event.city}, {event.country}</span>
+            <span className="event-venue">{event.venue}</span>
+          </div>
+          <div className="tickets">
+            <TicketLabel event={event} />
+          </div>
+        </div>
       </div>
     </div>
   )
@@ -57,7 +67,11 @@ export default function Events() {
     fetchEvents()
   }, [])
 
-  if (loading) return null
+  if (loading) return (
+    <section id="events" className="upcoming-events">
+      <div className="events-spinner" />
+    </section>
+  )
   if (error) return (
     <section id="events" className="upcoming-events">
       <p>Could not load shows. Please try again later.</p>
@@ -78,7 +92,7 @@ export default function Events() {
             <h2>{settings.past_shows_heading}</h2>
           </div>
           {past.map((event) => (
-            <EventCard key={event.id} event={event} />
+            <EventCard key={event.id} event={event} past />
           ))}
         </>
       )}
