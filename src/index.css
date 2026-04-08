@@ -181,8 +181,6 @@ h2{
 
 .upcoming-events {
   margin-top: 20px;
-  padding-left: 24px;
-  border-left: 2px solid #333;
 }
 
 .event {
@@ -190,7 +188,7 @@ h2{
   gap: 40px;
   align-items: flex-start;
   padding: 28px 0;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid #2e2e2e;
 }
 
 .event-past {
