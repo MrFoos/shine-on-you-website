@@ -4,19 +4,21 @@ import { supabase } from '../../lib/supabase'
 export default function SiteSettingsEditor() {
   const [tourHeading, setTourHeading] = useState('')
   const [pastShowsHeading, setPastShowsHeading] = useState('')
+  const [galleryCredit, setGalleryCredit] = useState('')
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
 
   useEffect(() => {
     supabase
       .from('settings')
-      .select('tour_heading, past_shows_heading')
+      .select('tour_heading, past_shows_heading, gallery_photo_credit')
       .eq('id', 1)
       .single()
       .then(({ data }) => {
         if (data) {
           setTourHeading(data.tour_heading)
           setPastShowsHeading(data.past_shows_heading)
+          setGalleryCredit(data.gallery_photo_credit ?? '')
         }
       })
   }, [])
@@ -28,6 +30,7 @@ export default function SiteSettingsEditor() {
       .update({
         tour_heading: tourHeading,
         past_shows_heading: pastShowsHeading,
+        gallery_photo_credit: galleryCredit,
         updated_at: new Date().toISOString(),
       })
       .eq('id', 1)
@@ -54,6 +57,15 @@ export default function SiteSettingsEditor() {
           value={pastShowsHeading}
           onChange={(e) => setPastShowsHeading(e.target.value)}
           placeholder="Past shows 2026"
+        />
+      </div>
+      <div className="admin-form-row">
+        <label>Fotokreditering (galleri)</label>
+        <input
+          type="text"
+          value={galleryCredit}
+          onChange={(e) => setGalleryCredit(e.target.value)}
+          placeholder="Espen Håkonsen, Patrik Skiffard"
         />
       </div>
       <button onClick={handleSave} disabled={saving}>

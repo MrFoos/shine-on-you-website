@@ -4,42 +4,83 @@ import { supabase } from '../../lib/supabase'
 export default function GalleryManager() {
   const [images, setImages] = useState([])
   const [uploading, setUploading] = useState(false)
+  const [dragOverIndex, setDragOverIndex] = useState(null)
+  const dragIndexRef = useRef(null)
   const fileInputRef = useRef(null)
 
-  const fetch = async () => {
+  const fetchImages = async () => {
     const { data } = await supabase.from('gallery').select('*').order('sort_order')
     setImages(data ?? [])
   }
 
-  useEffect(() => { fetch() }, [])
+  useEffect(() => { fetchImages() }, [])
 
   const handleUpload = async (e) => {
     const files = Array.from(e.target.files)
     if (!files.length) return
     setUploading(true)
 
+    let nextOrder = images.length
     for (const file of files) {
-      const path = `${Date.now()}-${file.name}`
+      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_')
+      const path = `${Date.now()}-${safeName}`
       const { error } = await supabase.storage.from('gallery').upload(path, file)
       if (!error) {
         await supabase.from('gallery').insert([{
           storage_path: path,
           alt: file.name,
-          sort_order: images.length,
+          sort_order: nextOrder++,
         }])
       }
     }
 
     setUploading(false)
     fileInputRef.current.value = ''
-    fetch()
+    fetchImages()
   }
 
   const handleDelete = async (image) => {
     if (!window.confirm('Slette dette bildet?')) return
     await supabase.storage.from('gallery').remove([image.storage_path])
     await supabase.from('gallery').delete().eq('id', image.id)
-    fetch()
+    fetchImages()
+  }
+
+  const handleDragStart = (index) => {
+    dragIndexRef.current = index
+  }
+
+  const handleDragOver = (e, index) => {
+    e.preventDefault()
+    setDragOverIndex(index)
+  }
+
+  const handleDrop = async (e, dropIndex) => {
+    e.preventDefault()
+    const dragIndex = dragIndexRef.current
+    if (dragIndex === null || dragIndex === dropIndex) {
+      setDragOverIndex(null)
+      return
+    }
+
+    const reordered = [...images]
+    const [moved] = reordered.splice(dragIndex, 1)
+    reordered.splice(dropIndex, 0, moved)
+
+    setImages(reordered)
+    setDragOverIndex(null)
+    dragIndexRef.current = null
+
+    await Promise.all(
+      reordered.map((img, i) =>
+        supabase.from('gallery').update({ sort_order: i }).eq('id', img.id)
+      )
+    )
+  }
+
+  const handleDragEnd = () => {
+    setDragOverIndex(null)
+    dragIndexRef.current = null
   }
 
   const getUrl = (path) =>
@@ -60,8 +101,16 @@ export default function GalleryManager() {
       </div>
 
       <div className="admin-gallery-grid">
-        {images.map((img) => (
-          <div key={img.id} className="admin-gallery-item">
+        {images.map((img, i) => (
+          <div
+            key={img.id}
+            className={`admin-gallery-item${dragOverIndex === i ? ' drag-over' : ''}`}
+            draggable
+            onDragStart={() => handleDragStart(i)}
+            onDragOver={(e) => handleDragOver(e, i)}
+            onDrop={(e) => handleDrop(e, i)}
+            onDragEnd={handleDragEnd}
+          >
             <img src={getUrl(img.storage_path)} alt={img.alt} />
             <button onClick={() => handleDelete(img)}>Slett</button>
           </div>

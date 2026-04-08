@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import { supabase } from '../lib/supabase'
 
 const MEMBERS = [
   { name: 'Pelle Anderson',          role: 'Guitar and vocals',           img: '/images/members/member-pelle-anderson.jpg' },
@@ -14,24 +16,32 @@ const MEMBERS = [
   { name: 'Randi Andreassen',        role: 'Backing vocals',              img: '/images/members/member-randi-andreassen.jpg' },
 ]
 
-const BIO = [
-  `A powerful tribute to one of the greatest bands in music history`,
-  `Since its formation in 2017, Shine On You – featuring members from Oslo, Hamar, and Kungsbacka – has performed to sold-out audiences across Norway and Sweden. Over the years, the band has refined both its musical and visual expression, with a strong focus on capturing the depth and detail of Pink Floyd's iconic sound and stage productions.`,
-  `Shine On You's ambition is to recreate the essence of Pink Floyd as authentically as possible, bringing to life the legendary band's extensive catalogue with precision, passion, and respect.`,
-  `With a keen ear for detail and a deep appreciation for the artistry behind Pink Floyd's concept albums and live performances, the band delivers immersive concerts featuring spectacular light shows and carefully curated video content at theatres and concert venues.`,
-  `Among the many highlights, Shine On You has performed the Atom Heart Mother Suite in the cathedral ruins of Hamar, accompanied by brass ensemble, soloists, and choir. The band has also returned to packed venues with performances of large parts of The Dark Side of the Moon, Wish You Were Here, and The Wall.`,
-]
-
 export default function AboutPage() {
+  const [paragraphs, setParagraphs] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    supabase.from('about').select('bio').eq('id', 1).single()
+      .then(({ data }) => {
+        if (data?.bio) {
+          setParagraphs(data.bio.split('\n').map(p => p.trim()).filter(Boolean))
+        }
+        setLoading(false)
+      })
+  }, [])
+
   return (
     <div className="container">
       <Nav />
       <section className="about-page">
         <h2>About</h2>
         <div className="about-bio">
-          {BIO.map((para, i) => (
-            <p key={i} className={i === 0 ? 'about-tagline' : undefined}>{para}</p>
-          ))}
+          {loading
+            ? <div className="events-spinner" />
+            : paragraphs.map((para, i) => (
+                <p key={i} className={i === 0 ? 'about-tagline' : undefined}>{para}</p>
+              ))
+          }
         </div>
 
         <div className="members-grid">
