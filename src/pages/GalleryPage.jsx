@@ -1,44 +1,39 @@
 import { useState, useEffect, useCallback } from 'react'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-
-const IMAGES = [
-  { src: '/images/gallery/P1092034Shine25@EspenHåkonsen47754888.webp', alt: 'Shine On You live', photographer: 'Espen Håkonsen' },
-  { src: '/images/gallery/P1092053Shine25@EspenHåkonsen47754888.webp', alt: 'Shine On You live', photographer: 'Espen Håkonsen' },
-  { src: '/images/gallery/P1092391Shine25@EspenHåkonsen47754888.webp', alt: 'Shine On You live', photographer: 'Espen Håkonsen' },
-  { src: '/images/gallery/P1092520Shine25@EspenHåkonsen47754888.webp', alt: 'Shine On You live', photographer: 'Espen Håkonsen' },
-  { src: '/images/gallery/P1092521Shine25@EspenHåkonsen47754888.webp', alt: 'Shine On You live', photographer: 'Espen Håkonsen' },
-  { src: '/images/gallery/P1092557Shine25@EspenHåkonsen47754888.webp', alt: 'Shine On You live', photographer: 'Espen Håkonsen' },
-  { src: '/images/gallery/P1092593Shine25@EspenHåkonsen47754888.webp', alt: 'Shine On You live', photographer: 'Espen Håkonsen' },
-  { src: '/images/gallery/P1102743Shine25@EspenHåkonsen47754888.webp', alt: 'Shine On You live', photographer: 'Espen Håkonsen' },
-  { src: '/images/gallery/P1103000Shine25@EspenHåkonsen47754888.webp', alt: 'Shine On You live', photographer: 'Espen Håkonsen' },
-  { src: '/images/gallery/P1092462Shine25@EspenHåkonsen47754888.jpg', alt: 'Shine On You live', photographer: 'Espen Håkonsen' },
-  { src: '/images/gallery/P1092578Shine25@EspenHåkonsen47754888.jpg', alt: 'Shine On You live', photographer: 'Espen Håkonsen' },
-  { src: '/images/gallery/P1102820Shine25@EspenHåkonsen47754888.jpg', alt: 'Shine On You live', photographer: 'Espen Håkonsen' },
-  { src: '/images/gallery/4R6A9676.jpg', alt: 'Shine On You live', photographer: 'Patrik Skiffard' },
-  { src: '/images/gallery/4R6A9677.jpg', alt: 'Shine On You live', photographer: 'Patrik Skiffard' },
-  { src: '/images/gallery/4R6A9678.jpg', alt: 'Shine On You live', photographer: 'Patrik Skiffard' },
-  { src: '/images/gallery/4R6A9680.jpg', alt: 'Shine On You live', photographer: 'Patrik Skiffard' },
-  { src: '/images/gallery/4R6A9681.jpg', alt: 'Shine On You live', photographer: 'Patrik Skiffard' },
-  { src: '/images/gallery/4R6A9684.jpg', alt: 'Shine On You live', photographer: 'Patrik Skiffard' },
-  { src: '/images/gallery/4R6A9698.jpg', alt: 'Shine On You live', photographer: 'Patrik Skiffard' },
-  { src: '/images/gallery/4R6A1303.jpg', alt: 'Shine On You live', photographer: 'Patrik Skiffard' },
-]
-
-const PHOTOGRAPHERS = [...new Set(IMAGES.map(img => img.photographer))]
+import { supabase } from '../lib/supabase'
 
 export default function GalleryPage() {
+  const [images, setImages] = useState([])
+  const [photoCredit, setPhotoCredit] = useState('')
+  const [loading, setLoading] = useState(true)
   const [selected, setSelected] = useState(null)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const [{ data: imgs }, { data: settings }] = await Promise.all([
+        supabase.from('gallery').select('*').order('sort_order'),
+        supabase.from('settings').select('gallery_photo_credit').eq('id', 1).single(),
+      ])
+      setImages(imgs ?? [])
+      setPhotoCredit(settings?.gallery_photo_credit ?? '')
+      setLoading(false)
+    }
+    fetchData()
+  }, [])
+
+  const getUrl = (path) =>
+    supabase.storage.from('gallery').getPublicUrl(path).data.publicUrl
 
   const close = useCallback(() => setSelected(null), [])
 
   const prev = useCallback(() => {
-    setSelected(i => (i - 1 + IMAGES.length) % IMAGES.length)
-  }, [])
+    setSelected(i => (i - 1 + images.length) % images.length)
+  }, [images.length])
 
   const next = useCallback(() => {
-    setSelected(i => (i + 1) % IMAGES.length)
-  }, [])
+    setSelected(i => (i + 1) % images.length)
+  }, [images.length])
 
   useEffect(() => {
     if (selected === null) return
@@ -57,22 +52,28 @@ export default function GalleryPage() {
       <section className="gallery-page">
         <h2>Gallery</h2>
 
-        <div className="gallery-grid">
-          {IMAGES.map((img, i) => (
-            <button
-              key={i}
-              className="gallery-item"
-              onClick={() => setSelected(i)}
-              aria-label={`Open photo ${i + 1}`}
-            >
-              <img src={img.src} alt={img.alt} loading="lazy" />
-            </button>
-          ))}
-        </div>
+        {loading ? (
+          <div className="events-spinner" />
+        ) : (
+          <>
+            <div className="gallery-grid">
+              {images.map((img, i) => (
+                <button
+                  key={img.id}
+                  className="gallery-item"
+                  onClick={() => setSelected(i)}
+                  aria-label={`Open photo ${i + 1}`}
+                >
+                  <img src={getUrl(img.storage_path)} alt={img.alt} loading="lazy" />
+                </button>
+              ))}
+            </div>
 
-        <p className="gallery-photo-credit">
-          Photos: {PHOTOGRAPHERS.join(', ')}
-        </p>
+            {photoCredit && (
+              <p className="gallery-photo-credit">Photos: {photoCredit}</p>
+            )}
+          </>
+        )}
       </section>
       <Footer />
 
@@ -85,7 +86,7 @@ export default function GalleryPage() {
             aria-label="Previous"
           >‹</button>
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <img src={IMAGES[selected].src} alt={IMAGES[selected].alt} />
+            <img src={getUrl(images[selected].storage_path)} alt={images[selected].alt} />
           </div>
           <button
             className="lightbox-next"
