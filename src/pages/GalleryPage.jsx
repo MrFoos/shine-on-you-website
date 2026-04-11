@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { supabase } from '../lib/supabase'
+import SEO from '../components/SEO'
 
 export default function GalleryPage() {
   const [images, setImages] = useState([])
@@ -48,6 +49,11 @@ export default function GalleryPage() {
 
   return (
     <div className="container">
+      <SEO
+        title="Bilder – Shine On You Pink Floyd Tribute"
+        description="Fotogalleri fra Shine On You sine konserter og opptredener."
+        canonicalPath="/gallery"
+      />
       <Nav />
       <section className="gallery-page">
         <h2>Gallery</h2>
