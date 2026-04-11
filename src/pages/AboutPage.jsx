@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { supabase } from '../lib/supabase'
+import SEO from '../components/SEO'
 
 const MEMBERS = [
   { name: 'Pelle Anderson',          role: 'Guitar and vocals',           img: '/images/members/member-pelle-anderson.jpg' },
@@ -32,6 +33,11 @@ export default function AboutPage() {
 
   return (
     <div className="container">
+      <SEO
+        title="Om bandet – Shine On You Pink Floyd Tribute"
+        description="Lær mer om Shine On You, Pink Floyd tributebandet fra Norge. 10 musikere dedikert til å gjenskape Pink Floyds unike lydlandskap."
+        canonicalPath="/about"
+      />
       <Nav />
       <section className="about-page">
         <h2>About</h2>
