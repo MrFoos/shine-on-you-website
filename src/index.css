@@ -44,6 +44,9 @@ h2{
 .container {
   max-width: auto;
   width: 95%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .slider-wrapper {
@@ -298,6 +301,7 @@ footer{
     text-align:center;
     padding:20px 0;
     font-size:small;
+    margin-top: auto;
 }
 
 .footer-contact-btn {
