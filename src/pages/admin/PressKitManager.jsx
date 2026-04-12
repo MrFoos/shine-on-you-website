@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { supabase } from '../../lib/supabase'
+import shared from './AdminShared.module.css'
 
 export default function PressKitManager() {
   const [files, setFiles] = useState([])
@@ -42,9 +43,9 @@ export default function PressKitManager() {
     supabase.storage.from('presskit').getPublicUrl(path).data.publicUrl
 
   return (
-    <div className="admin-editor">
-      <div className="admin-form">
-        <div className="admin-form-row">
+    <div className={shared.editor}>
+      <div className={shared.form}>
+        <div className={shared.formRow}>
           <label>Etikett</label>
           <input
             type="text"
@@ -53,7 +54,7 @@ export default function PressKitManager() {
             placeholder="f.eks. Press Kit, Venue Kit, Logo"
           />
         </div>
-        <div className="admin-form-row">
+        <div className={shared.formRow}>
           <label>Fil</label>
           <input
             ref={fileInputRef}
@@ -65,9 +66,9 @@ export default function PressKitManager() {
         {uploading && <span>Laster opp…</span>}
       </div>
 
-      <div className="admin-file-list">
+      <div className={shared.fileList}>
         {files.map((f) => (
-          <div key={f.id} className="admin-file-item">
+          <div key={f.id} className={shared.fileItem}>
             <span>{f.label}</span>
             <a href={getUrl(f.storage_path)} target="_blank" rel="noreferrer">Last ned</a>
             <button onClick={() => handleDelete(f)}>Slett</button>

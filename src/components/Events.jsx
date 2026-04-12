@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
+import styles from './Events.module.css'
 
 function TicketLabel({ event }) {
   if (event.ticket_status === 'available') {
@@ -18,19 +19,19 @@ function EventCard({ event, past }) {
   const year = d.getFullYear()
 
   return (
-    <div className={`event${past ? ' event-past' : ''}`}>
-      <div className="event-date-block">
-        <span className="event-day">{day}</span>
-        <span className="event-month">{month}</span>
-        <span className="event-year">{year}</span>
+    <div className={`${styles.event}${past ? ` ${styles.eventPast}` : ''}`}>
+      <div className={styles.eventDateBlock}>
+        <span className={styles.eventDay}>{day}</span>
+        <span className={styles.eventMonth}>{month}</span>
+        <span className={styles.eventYear}>{year}</span>
       </div>
-      <div className="event-details">
-        <div className="event-details-top">
-          <div className="event-info">
-            <span className="event-city">{event.city}, {event.country}</span>
-            <span className="event-venue">{event.venue}</span>
+      <div className={styles.eventDetails}>
+        <div className={styles.eventDetailsTop}>
+          <div className={styles.eventInfo}>
+            <span className={styles.eventCity}>{event.city}, {event.country}</span>
+            <span className={styles.eventVenue}>{event.venue}</span>
           </div>
-          <div className="tickets">
+          <div className={styles.tickets}>
             <TicketLabel event={event} />
           </div>
         </div>
@@ -68,19 +69,19 @@ export default function Events() {
   }, [])
 
   if (loading) return (
-    <section id="events" className="upcoming-events">
+    <section id="events" className={styles.upcomingEvents}>
       <div className="events-spinner" />
     </section>
   )
   if (error) return (
-    <section id="events" className="upcoming-events">
+    <section id="events" className={styles.upcomingEvents}>
       <p>Could not load shows. Please try again later.</p>
     </section>
   )
 
   return (
-    <section id="events" className="upcoming-events">
-      <div className="tour-heading">
+    <section id="events" className={styles.upcomingEvents}>
+      <div className={styles.tourHeading}>
         <h2>{settings.tour_heading}</h2>
       </div>
       {upcoming.map((event) => (
@@ -88,7 +89,7 @@ export default function Events() {
       ))}
       {past.length > 0 && (
         <>
-          <div className="past-tour-heading">
+          <div className={styles.pastTourHeading}>
             <h2>{settings.past_shows_heading}</h2>
           </div>
           {past.map((event) => (

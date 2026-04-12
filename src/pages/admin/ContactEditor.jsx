@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabase'
+import shared from './AdminShared.module.css'
 
 export default function ContactEditor() {
   const [email, setEmail] = useState('')
@@ -20,8 +21,8 @@ export default function ContactEditor() {
   }
 
   return (
-    <div className="admin-editor">
-      <div className="admin-form-row">
+    <div className={shared.editor}>
+      <div className={shared.formRow}>
         <label>Kontakt-epost</label>
         <input
           type="email"

@@ -1,0 +1,148 @@
+/* Shared admin styles — imported alongside per-component modules */
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.editor textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #1e1e1e;
+  color: #fff;
+  font-size: 15px;
+  resize: vertical;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.formRow {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.formRow label {
+  font-size: 13px;
+  color: #aaa;
+}
+
+.formRow input,
+.formRow select,
+.formRow textarea {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #1e1e1e;
+  color: #fff;
+  font-size: 15px;
+}
+
+.formActions {
+  display: flex;
+  gap: 8px;
+}
+
+.formActions button,
+.editor button,
+.btnAdd {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  background: #e00;
+  color: #fff;
+}
+
+.formActions button[type="button"] {
+  background: #333;
+}
+
+.btnAdd {
+  margin-bottom: 16px;
+}
+
+.error {
+  color: #f66;
+  font-size: 14px;
+}
+
+.upload {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.galleryItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: grab;
+}
+
+.galleryItem.dragOver {
+  outline: 2px dashed #e63946;
+  opacity: 0.7;
+}
+
+.galleryItem img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Gallery/file item delete buttons — overrides .editor button above */
+.galleryItem button,
+.fileItem button {
+  background: #333;
+  color: #f66;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.videoList,
+.fileList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.videoItem,
+.fileItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #1e1e1e;
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+.videoItem span,
+.fileItem span {
+  flex: 1;
+}
+
+.videoItem a,
+.fileItem a {
+  color: #aaa;
+  font-size: 13px;
+}

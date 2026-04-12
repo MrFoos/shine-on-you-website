@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import shared from './AdminShared.module.css'
 
 const EMPTY = {
   date: '',
@@ -23,28 +24,28 @@ export default function EventForm({ initial, onSave, onCancel }) {
   }
 
   return (
-    <form className="admin-form" onSubmit={handleSubmit}>
-      <div className="admin-form-row">
+    <form className={shared.form} onSubmit={handleSubmit}>
+      <div className={shared.formRow}>
         <label>Dato</label>
         <input type="date" value={form.date} onChange={set('date')} required />
       </div>
-      <div className="admin-form-row">
+      <div className={shared.formRow}>
         <label>Venue</label>
         <input type="text" value={form.venue} onChange={set('venue')} required />
       </div>
-      <div className="admin-form-row">
+      <div className={shared.formRow}>
         <label>By</label>
         <input type="text" value={form.city} onChange={set('city')} required />
       </div>
-      <div className="admin-form-row">
+      <div className={shared.formRow}>
         <label>Land</label>
         <input type="text" value={form.country} onChange={set('country')} required />
       </div>
-      <div className="admin-form-row">
+      <div className={shared.formRow}>
         <label>Billett-URL</label>
         <input type="url" value={form.ticket_url} onChange={set('ticket_url')} placeholder="https://…" />
       </div>
-      <div className="admin-form-row">
+      <div className={shared.formRow}>
         <label>Status</label>
         <select value={form.ticket_status} onChange={set('ticket_status')}>
           <option value="available">Available</option>
@@ -52,7 +53,7 @@ export default function EventForm({ initial, onSave, onCancel }) {
           <option value="sold_out">Sold Out</option>
         </select>
       </div>
-      <div className="admin-form-actions">
+      <div className={shared.formActions}>
         <button type="submit" disabled={saving}>{saving ? 'Lagrer…' : 'Lagre'}</button>
         <button type="button" onClick={onCancel}>Avbryt</button>
       </div>

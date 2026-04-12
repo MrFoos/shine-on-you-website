@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabase'
 import EventForm from './EventForm'
+import shared from './AdminShared.module.css'
+import styles from './EventTable.module.css'
 
 export default function EventTable() {
   const [events, setEvents] = useState([])
@@ -41,7 +43,7 @@ export default function EventTable() {
   if (editing) {
     return (
       <div>
-        {saveError && <p className="admin-error">{saveError}</p>}
+        {saveError && <p className={shared.error}>{saveError}</p>}
         <EventForm
           initial={editing === 'new' ? null : editing}
           onSave={handleSave}
@@ -53,10 +55,10 @@ export default function EventTable() {
 
   return (
     <div>
-      <button className="admin-btn-add" onClick={() => setEditing('new')}>+ Nytt arrangement</button>
-      {fetchError && <p className="admin-error">{fetchError}</p>}
-      {saveError && <p className="admin-error">{saveError}</p>}
-      <table className="admin-table">
+      <button className={shared.btnAdd} onClick={() => setEditing('new')}>+ Nytt arrangement</button>
+      {fetchError && <p className={shared.error}>{fetchError}</p>}
+      {saveError && <p className={shared.error}>{saveError}</p>}
+      <table className={styles.adminTable}>
         <thead>
           <tr>
             <th>Dato</th>
