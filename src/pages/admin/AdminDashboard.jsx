@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
 import EventTable from './EventTable'
 import AboutEditor from './AboutEditor'
@@ -22,6 +22,21 @@ const TABS = [
 export default function AdminDashboard() {
   const { signOut } = useAuth()
   const [activeTab, setActiveTab] = useState('events')
+  const tabRefs = useRef([])
+
+  const handleTabKeyDown = (e, index) => {
+    if (e.key === 'ArrowRight') {
+      e.preventDefault()
+      const next = (index + 1) % TABS.length
+      setActiveTab(TABS[next].id)
+      tabRefs.current[next]?.focus()
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault()
+      const prev = (index - 1 + TABS.length) % TABS.length
+      setActiveTab(TABS[prev].id)
+      tabRefs.current[prev]?.focus()
+    }
+  }
 
   return (
     <div className={styles.adminDashboard}>
@@ -30,19 +45,31 @@ export default function AdminDashboard() {
         <button className={styles.adminSignout} onClick={signOut}>Logg ut</button>
       </div>
 
-      <nav className={styles.adminTabs}>
-        {TABS.map((tab) => (
+      <div className={styles.adminTabs} role="tablist" aria-label="Admin seksjoner">
+        {TABS.map((tab, i) => (
           <button
             key={tab.id}
+            ref={el => { tabRefs.current[i] = el }}
+            role="tab"
+            aria-selected={activeTab === tab.id}
+            aria-controls={`tabpanel-${tab.id}`}
+            id={`tab-${tab.id}`}
+            tabIndex={activeTab === tab.id ? 0 : -1}
             className={`${styles.adminTab} ${activeTab === tab.id ? styles.adminTabActive : ''}`}
             onClick={() => setActiveTab(tab.id)}
+            onKeyDown={(e) => handleTabKeyDown(e, i)}
           >
             {tab.label}
           </button>
         ))}
-      </nav>
+      </div>
 
-      <div className={styles.adminContent}>
+      <div
+        role="tabpanel"
+        id={`tabpanel-${activeTab}`}
+        aria-labelledby={`tab-${activeTab}`}
+        className={styles.adminContent}
+      >
         {activeTab === 'events' && <EventTable />}
         {activeTab === 'about' && <AboutEditor />}
         {activeTab === 'members' && <BandMembersManager />}

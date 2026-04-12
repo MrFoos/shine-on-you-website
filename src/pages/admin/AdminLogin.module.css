@@ -19,6 +19,12 @@
   width: 320px;
 }
 
+.adminLabel {
+  font-size: 13px;
+  color: #aaa;
+  margin-bottom: -4px;
+}
+
 .adminLogin input {
   padding: 10px;
   border-radius: 6px;

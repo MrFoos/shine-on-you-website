@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { supabase } from '../lib/supabase'
@@ -10,6 +10,9 @@ export default function GalleryPage() {
   const [photoCredit, setPhotoCredit] = useState('')
   const [loading, setLoading] = useState(true)
   const [selected, setSelected] = useState(null)
+  const lightboxRef = useRef(null)
+  const closeButtonRef = useRef(null)
+  const triggerRef = useRef(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +31,46 @@ export default function GalleryPage() {
     supabase.storage.from('gallery').getPublicUrl(path).data.publicUrl
 
   const close = useCallback(() => setSelected(null), [])
+
+  // Flytt fokus til lukk-knappen når lightboxen åpnes
+  useEffect(() => {
+    if (selected !== null && closeButtonRef.current) {
+      closeButtonRef.current.focus()
+    }
+  }, [selected])
+
+  // Returner fokus til trigger-knappen når lightboxen lukkes
+  useEffect(() => {
+    if (selected === null && triggerRef.current) {
+      triggerRef.current.focus()
+    }
+  }, [selected])
+
+  // Fokusfelle: Tab-tasten sirkler inni lightboxen
+  useEffect(() => {
+    if (selected === null || !lightboxRef.current) return
+    const el = lightboxRef.current
+    const focusable = el.querySelectorAll('button')
+    const first = focusable[0]
+    const last = focusable[focusable.length - 1]
+
+    const trapFocus = (e) => {
+      if (e.key !== 'Tab') return
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
+    }
+    el.addEventListener('keydown', trapFocus)
+    return () => el.removeEventListener('keydown', trapFocus)
+  }, [selected])
 
   const prev = useCallback(() => {
     setSelected(i => (i - 1 + images.length) % images.length)
@@ -56,11 +99,12 @@ export default function GalleryPage() {
         canonicalPath="/gallery"
       />
       <Nav />
+      <main id="main-content">
       <section className={styles.galleryPage}>
-        <h2>Gallery</h2>
+        <h1>Gallery</h1>
 
         {loading ? (
-          <div className="events-spinner" />
+          <div role="status" aria-label="Laster bilder"><div className="events-spinner" /></div>
         ) : (
           <>
             <div className={styles.galleryGrid}>
@@ -68,8 +112,8 @@ export default function GalleryPage() {
                 <button
                   key={img.id}
                   className={styles.galleryItem}
-                  onClick={() => setSelected(i)}
-                  aria-label={`Open photo ${i + 1}`}
+                  onClick={(e) => { triggerRef.current = e.currentTarget; setSelected(i) }}
+                  aria-label={`Åpne bilde ${i + 1}`}
                 >
                   <img src={getUrl(img.storage_path)} alt={img.alt} loading="lazy" />
                 </button>
@@ -82,15 +126,28 @@ export default function GalleryPage() {
           </>
         )}
       </section>
+      </main>
       <Footer />
 
       {selected !== null && (
-        <div className={styles.lightbox} onClick={close}>
-          <button className={styles.lightboxClose} onClick={close} aria-label="Close">✕</button>
+        <div
+          ref={lightboxRef}
+          className={styles.lightbox}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Bilde ${selected + 1} av ${images.length}`}
+          onClick={close}
+        >
+          <button
+            ref={closeButtonRef}
+            className={styles.lightboxClose}
+            onClick={close}
+            aria-label="Lukk bildevisning"
+          >✕</button>
           <button
             className={styles.lightboxPrev}
             onClick={(e) => { e.stopPropagation(); prev() }}
-            aria-label="Previous"
+            aria-label="Forrige bilde"
           >‹</button>
           <div className={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
             <img src={getUrl(images[selected].storage_path)} alt={images[selected].alt} />
@@ -98,7 +155,7 @@ export default function GalleryPage() {
           <button
             className={styles.lightboxNext}
             onClick={(e) => { e.stopPropagation(); next() }}
-            aria-label="Next"
+            aria-label="Neste bilde"
           >›</button>
         </div>
       )}

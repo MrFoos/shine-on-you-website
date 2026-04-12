@@ -61,6 +61,7 @@ test('viser events normalt ved vellykket fetch', async () => {
   render(<Events />)
 
   await waitFor(() => {
-    expect(screen.getByText('Rockefeller, Oslo NO')).toBeInTheDocument()
+    expect(screen.getByText('Rockefeller')).toBeInTheDocument()
+    expect(screen.getByText('Oslo, NO')).toBeInTheDocument()
   })
 })

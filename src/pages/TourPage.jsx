@@ -12,7 +12,9 @@ export default function TourPage() {
         canonicalPath="/tour"
       />
       <Nav />
-      <Events />
+      <main id="main-content">
+        <Events />
+      </main>
       <Footer />
     </div>
   )

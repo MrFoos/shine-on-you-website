@@ -32,8 +32,11 @@ export default function Home() {
         <script type="application/ld+json">{JSON.stringify(MUSIC_GROUP_SCHEMA)}</script>
       </Helmet>
       <Nav />
-      <Header />
-      <SocialMedia />
+      <main id="main-content">
+        <h1 className="sr-only">Shine On You</h1>
+        <Header />
+        <SocialMedia />
+      </main>
       <Footer />
     </div>
   )

@@ -70,7 +70,9 @@ export default function Events() {
 
   if (loading) return (
     <section id="events" className={styles.upcomingEvents}>
-      <div className="events-spinner" />
+      <div role="status" aria-label="Laster konserter">
+        <div className="events-spinner" />
+      </div>
     </section>
   )
   if (error) return (
@@ -82,7 +84,7 @@ export default function Events() {
   return (
     <section id="events" className={styles.upcomingEvents}>
       <div className={styles.tourHeading}>
-        <h2>{settings.tour_heading}</h2>
+        <h1>{settings.tour_heading}</h1>
       </div>
       {upcoming.map((event) => (
         <EventCard key={event.id} event={event} />
