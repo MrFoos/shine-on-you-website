@@ -1,0 +1,152 @@
+.upcomingEvents {
+  margin-top: 20px;
+}
+
+.tourHeading {
+  color: #fff;
+}
+
+.pastTourHeading {
+  margin-top: 72px;
+  color: #fff;
+}
+
+.event {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  padding: 28px 0;
+  border-bottom: 1px solid #2e2e2e;
+}
+
+.eventPast {
+  opacity: 0.45;
+  margin-bottom: 88px;
+}
+
+.eventDateBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 64px;
+  line-height: 1.1;
+}
+
+.eventDay {
+  font-size: 52px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -2px;
+}
+
+.eventMonth {
+  font-size: 14px;
+  font-weight: 700;
+  color: #cc0000;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.eventYear {
+  font-size: 13px;
+  color: #555;
+  letter-spacing: 0.08em;
+}
+
+.eventDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding-top: 6px;
+  min-width: 0;
+}
+
+.eventDetailsTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.eventInfo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+}
+
+.eventVenue {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.eventCity {
+  font-size: 20px;
+  font-weight: 400;
+  color: #888;
+}
+
+.tickets {
+  flex-shrink: 0;
+  color: #cc0000;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tickets a {
+  color: #cc0000;
+  text-decoration: none;
+  border: 2px solid #cc0000;
+  border-radius: 3px;
+  padding: 9px 22px;
+  display: inline-block;
+  transition: background 0.15s, color 0.15s;
+}
+
+.tickets a:hover {
+  background: #cc0000;
+  color: #fff;
+}
+
+.tickets div {
+  padding: 9px 22px;
+  display: inline-block;
+  color: #555;
+}
+
+@media (max-width: 599px) {
+  .upcomingEvents {
+    padding-left: 16px;
+  }
+
+  .event {
+    gap: 16px;
+  }
+
+  .eventDay {
+    font-size: 36px;
+  }
+
+  .eventDetailsTop {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .eventVenue,
+  .eventCity {
+    font-size: 16px;
+  }
+
+  .tickets a,
+  .tickets div {
+    padding: 8px 18px;
+    font-size: 13px;
+  }
+}

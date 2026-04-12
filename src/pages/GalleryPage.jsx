@@ -3,6 +3,7 @@ import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { supabase } from '../lib/supabase'
 import SEO from '../components/SEO'
+import styles from './GalleryPage.module.css'
 
 export default function GalleryPage() {
   const [images, setImages] = useState([])
@@ -55,18 +56,18 @@ export default function GalleryPage() {
         canonicalPath="/gallery"
       />
       <Nav />
-      <section className="gallery-page">
+      <section className={styles.galleryPage}>
         <h2>Gallery</h2>
 
         {loading ? (
           <div className="events-spinner" />
         ) : (
           <>
-            <div className="gallery-grid">
+            <div className={styles.galleryGrid}>
               {images.map((img, i) => (
                 <button
                   key={img.id}
-                  className="gallery-item"
+                  className={styles.galleryItem}
                   onClick={() => setSelected(i)}
                   aria-label={`Open photo ${i + 1}`}
                 >
@@ -76,7 +77,7 @@ export default function GalleryPage() {
             </div>
 
             {photoCredit && (
-              <p className="gallery-photo-credit">Photos: {photoCredit}</p>
+              <p className={styles.galleryPhotoCredit}>Photos: {photoCredit}</p>
             )}
           </>
         )}
@@ -84,18 +85,18 @@ export default function GalleryPage() {
       <Footer />
 
       {selected !== null && (
-        <div className="lightbox" onClick={close}>
-          <button className="lightbox-close" onClick={close} aria-label="Close">✕</button>
+        <div className={styles.lightbox} onClick={close}>
+          <button className={styles.lightboxClose} onClick={close} aria-label="Close">✕</button>
           <button
-            className="lightbox-prev"
+            className={styles.lightboxPrev}
             onClick={(e) => { e.stopPropagation(); prev() }}
             aria-label="Previous"
           >‹</button>
-          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+          <div className={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
             <img src={getUrl(images[selected].storage_path)} alt={images[selected].alt} />
           </div>
           <button
-            className="lightbox-next"
+            className={styles.lightboxNext}
             onClick={(e) => { e.stopPropagation(); next() }}
             aria-label="Next"
           >›</button>

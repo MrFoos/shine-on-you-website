@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
+import styles from './AdminLogin.module.css'
 
 export default function AdminLogin() {
   const { signIn } = useAuth()
@@ -24,7 +25,7 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="admin-login">
+    <div className={styles.adminLogin}>
       <h1>Admin</h1>
       <form onSubmit={handleSubmit}>
         <input
@@ -44,7 +45,7 @@ export default function AdminLogin() {
         <button type="submit" disabled={loading}>
           {loading ? 'Logger inn…' : 'Logg inn'}
         </button>
-        {error && <p className="admin-error">{error}</p>}
+        {error && <p className={styles.adminError}>{error}</p>}
       </form>
     </div>
   )

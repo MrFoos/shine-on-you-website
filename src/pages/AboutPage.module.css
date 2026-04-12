@@ -1,0 +1,88 @@
+.aboutPage {
+  color: #fff;
+  padding: 20px;
+}
+
+.aboutBio {
+  max-width: 800px;
+  margin: 0 auto 48px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #ddd;
+  text-align: center;
+}
+
+.aboutBio p {
+  margin: 0 0 1.2em;
+}
+
+.aboutTagline {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.8em !important;
+  letter-spacing: 0.02em;
+}
+
+.aboutBio p:last-child {
+  margin-bottom: 0;
+}
+
+.membersGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.memberCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.memberCard img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 6px;
+  border: 3px solid white;
+  margin-bottom: 10px;
+}
+
+.memberName {
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0 0 4px;
+}
+
+.memberRole {
+  color: #aaa;
+  font-size: 13px;
+  margin: 0;
+}
+
+.membersPhotoCredit {
+  text-align: center;
+  color: #666;
+  font-size: 12px;
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+
+@media only screen and (max-width: 1023px) {
+  .membersGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
+@media only screen and (max-width: 599px) {
+  .membersGrid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 12px;
+  }
+}

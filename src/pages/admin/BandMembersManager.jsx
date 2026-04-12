@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { supabase } from '../../lib/supabase'
+import shared from './AdminShared.module.css'
 
 export default function BandMembersManager() {
   const [members, setMembers] = useState([])
@@ -100,9 +101,9 @@ export default function BandMembersManager() {
     supabase.storage.from('members').getPublicUrl(path).data.publicUrl
 
   return (
-    <div className="admin-editor">
-      <form onSubmit={handleUpload} className="admin-form">
-        <div className="admin-form-row">
+    <div className={shared.editor}>
+      <form onSubmit={handleUpload} className={shared.form}>
+        <div className={shared.formRow}>
           <label>Navn</label>
           <input
             type="text"
@@ -112,7 +113,7 @@ export default function BandMembersManager() {
             required
           />
         </div>
-        <div className="admin-form-row">
+        <div className={shared.formRow}>
           <label>Rolle</label>
           <input
             type="text"
@@ -122,7 +123,7 @@ export default function BandMembersManager() {
             required
           />
         </div>
-        <div className="admin-upload">
+        <div className={shared.upload}>
           <input
             ref={fileInputRef}
             type="file"
@@ -135,11 +136,11 @@ export default function BandMembersManager() {
         </div>
       </form>
 
-      <div className="admin-gallery-grid">
+      <div className={shared.galleryGrid}>
         {members.map((member, i) => (
           <div
             key={member.id}
-            className={`admin-gallery-item${dragOverIndex === i ? ' drag-over' : ''}`}
+            className={`${shared.galleryItem}${dragOverIndex === i ? ` ${shared.dragOver}` : ''}`}
             draggable
             onDragStart={() => handleDragStart(i)}
             onDragOver={(e) => handleDragOver(e, i)}

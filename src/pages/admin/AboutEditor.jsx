@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabase'
+import shared from './AdminShared.module.css'
 
 export default function AboutEditor() {
   const [bio, setBio] = useState('')
@@ -20,7 +21,7 @@ export default function AboutEditor() {
   }
 
   return (
-    <div className="admin-editor">
+    <div className={shared.editor}>
       <textarea
         rows={8}
         value={bio}

@@ -1,0 +1,38 @@
+.mainNav {
+  background: #000;
+  padding: 14px 0;
+  border-bottom: 1px solid #222;
+}
+
+.navLinks {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLinks a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.navLinks a:hover,
+.navLinks a:global(.active) {
+  color: #fff;
+}
+
+@media (max-width: 599px) {
+  .navLinks {
+    gap: 16px;
+  }
+
+  .navLinks a {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+}

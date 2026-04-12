@@ -7,6 +7,7 @@ import GalleryManager from './GalleryManager'
 import PressKitManager from './PressKitManager'
 import SiteSettingsEditor from './SiteSettingsEditor'
 import BandMembersManager from './BandMembersManager'
+import styles from './AdminDashboard.module.css'
 
 const TABS = [
   { id: 'events', label: 'Events' },
@@ -23,17 +24,17 @@ export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('events')
 
   return (
-    <div className="admin-dashboard">
-      <div className="admin-header">
+    <div className={styles.adminDashboard}>
+      <div className={styles.adminHeader}>
         <h1>Shine On You — Admin</h1>
-        <button className="admin-signout" onClick={signOut}>Logg ut</button>
+        <button className={styles.adminSignout} onClick={signOut}>Logg ut</button>
       </div>
 
-      <nav className="admin-tabs">
+      <nav className={styles.adminTabs}>
         {TABS.map((tab) => (
           <button
             key={tab.id}
-            className={`admin-tab ${activeTab === tab.id ? 'active' : ''}`}
+            className={`${styles.adminTab} ${activeTab === tab.id ? styles.adminTabActive : ''}`}
             onClick={() => setActiveTab(tab.id)}
           >
             {tab.label}
@@ -41,7 +42,7 @@ export default function AdminDashboard() {
         ))}
       </nav>
 
-      <div className="admin-content">
+      <div className={styles.adminContent}>
         {activeTab === 'events' && <EventTable />}
         {activeTab === 'about' && <AboutEditor />}
         {activeTab === 'members' && <BandMembersManager />}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabase'
+import shared from './AdminShared.module.css'
 
 export default function SiteSettingsEditor() {
   const [tourHeading, setTourHeading] = useState('')
@@ -40,8 +41,8 @@ export default function SiteSettingsEditor() {
   }
 
   return (
-    <div className="admin-editor">
-      <div className="admin-form-row">
+    <div className={shared.editor}>
+      <div className={shared.formRow}>
         <label>Tour-overskrift</label>
         <input
           type="text"
@@ -50,7 +51,7 @@ export default function SiteSettingsEditor() {
           placeholder="Tour 2026"
         />
       </div>
-      <div className="admin-form-row">
+      <div className={shared.formRow}>
         <label>Tidligere shows-overskrift</label>
         <input
           type="text"
@@ -59,7 +60,7 @@ export default function SiteSettingsEditor() {
           placeholder="Past shows 2026"
         />
       </div>
-      <div className="admin-form-row">
+      <div className={shared.formRow}>
         <label>Fotokreditering (galleri)</label>
         <input
           type="text"

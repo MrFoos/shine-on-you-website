@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabase'
+import shared from './AdminShared.module.css'
 
 export default function VideoManager() {
   const [videos, setVideos] = useState([])
@@ -31,9 +32,9 @@ export default function VideoManager() {
   }
 
   return (
-    <div className="admin-editor">
-      <form className="admin-form" onSubmit={handleAdd}>
-        <div className="admin-form-row">
+    <div className={shared.editor}>
+      <form className={shared.form} onSubmit={handleAdd}>
+        <div className={shared.formRow}>
           <label>YouTube Video ID</label>
           <input
             type="text"
@@ -43,18 +44,18 @@ export default function VideoManager() {
             required
           />
         </div>
-        <div className="admin-form-row">
+        <div className={shared.formRow}>
           <label>Tittel (valgfritt)</label>
           <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
         </div>
-        <div className="admin-form-actions">
+        <div className={shared.formActions}>
           <button type="submit" disabled={adding}>{adding ? 'Legger til…' : 'Legg til video'}</button>
         </div>
       </form>
 
-      <div className="admin-video-list">
+      <div className={shared.videoList}>
         {videos.map((v) => (
-          <div key={v.id} className="admin-video-item">
+          <div key={v.id} className={shared.videoItem}>
             <span>{v.title || v.youtube_id}</span>
             <a href={`https://www.youtube.com/watch?v=${v.youtube_id}`} target="_blank" rel="noreferrer">Se</a>
             <button onClick={() => handleDelete(v.id)}>Slett</button>

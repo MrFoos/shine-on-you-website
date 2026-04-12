@@ -1,0 +1,41 @@
+.socialMedia {
+  padding: 48px 20px 32px;
+}
+
+@media (max-width: 899px) {
+  .socialMedia {
+    padding-top: 296px;
+  }
+}
+
+.socialIcons {
+  display: flex;
+  justify-content: center;
+}
+
+.socialIcons a {
+  color: #fff;
+}
+
+.facebook {
+  padding-right: 16px;
+}
+
+.instagram {
+  padding-right: 16px;
+}
+
+.youtube {
+  padding-right: 16px;
+}
+
+.icon {
+  color: #000;
+  font-size: 30px;
+  margin: 0 10px;
+  transition: all 0.5s ease;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+}

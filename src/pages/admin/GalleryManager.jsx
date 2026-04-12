@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { supabase } from '../../lib/supabase'
+import shared from './AdminShared.module.css'
 
 export default function GalleryManager() {
   const [images, setImages] = useState([])
@@ -87,8 +88,8 @@ export default function GalleryManager() {
     supabase.storage.from('gallery').getPublicUrl(path).data.publicUrl
 
   return (
-    <div className="admin-editor">
-      <div className="admin-upload">
+    <div className={shared.editor}>
+      <div className={shared.upload}>
         <input
           ref={fileInputRef}
           type="file"
@@ -100,11 +101,11 @@ export default function GalleryManager() {
         {uploading && <span>Laster opp…</span>}
       </div>
 
-      <div className="admin-gallery-grid">
+      <div className={shared.galleryGrid}>
         {images.map((img, i) => (
           <div
             key={img.id}
-            className={`admin-gallery-item${dragOverIndex === i ? ' drag-over' : ''}`}
+            className={`${shared.galleryItem}${dragOverIndex === i ? ` ${shared.dragOver}` : ''}`}
             draggable
             onDragStart={() => handleDragStart(i)}
             onDragOver={(e) => handleDragOver(e, i)}
