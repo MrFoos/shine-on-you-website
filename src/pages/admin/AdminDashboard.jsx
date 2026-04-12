@@ -6,10 +6,12 @@ import VideoManager from './VideoManager'
 import GalleryManager from './GalleryManager'
 import PressKitManager from './PressKitManager'
 import SiteSettingsEditor from './SiteSettingsEditor'
+import BandMembersManager from './BandMembersManager'
 
 const TABS = [
   { id: 'events', label: 'Events' },
   { id: 'about', label: 'Om bandet' },
+  { id: 'members', label: 'Bandmedlemmer' },
   { id: 'videos', label: 'Videoer' },
   { id: 'gallery', label: 'Galleri' },
   { id: 'presskit', label: 'Press Kit' },
@@ -42,6 +44,7 @@ export default function AdminDashboard() {
       <div className="admin-content">
         {activeTab === 'events' && <EventTable />}
         {activeTab === 'about' && <AboutEditor />}
+        {activeTab === 'members' && <BandMembersManager />}
         {activeTab === 'videos' && <VideoManager />}
         {activeTab === 'gallery' && <GalleryManager />}
         {activeTab === 'presskit' && <PressKitManager />}
