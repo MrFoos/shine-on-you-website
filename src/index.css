@@ -45,9 +45,34 @@ footer{
     margin-top: auto;
 }
 
+h1 {
+  text-align: center;
+  font-size: 30px;
+}
+
 h2{
     text-align:center;
     font-size:30px;
+}
+
+/* Visually hidden — tilgjengelig for skjermlesere, usynlig visuelt */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Synlig tastaturfokus for alle interaktive elementer */
+:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 /* Container — used on all pages as layout wrapper */

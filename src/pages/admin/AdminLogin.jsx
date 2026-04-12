@@ -28,14 +28,18 @@ export default function AdminLogin() {
     <div className={styles.adminLogin}>
       <h1>Admin</h1>
       <form onSubmit={handleSubmit}>
+        <label htmlFor="login-email" className={styles.adminLabel}>E-post</label>
         <input
+          id="login-email"
           type="email"
           placeholder="E-post"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+        <label htmlFor="login-password" className={styles.adminLabel}>Passord</label>
         <input
+          id="login-password"
           type="password"
           placeholder="Passord"
           value={password}

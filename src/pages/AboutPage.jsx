@@ -34,11 +34,12 @@ export default function AboutPage() {
         canonicalPath="/about"
       />
       <Nav />
+      <main id="main-content">
       <section className={styles.aboutPage}>
-        <h2>About</h2>
+        <h1>About</h1>
         <div className={styles.aboutBio}>
           {loading
-            ? <div className="events-spinner" />
+            ? <div role="status" aria-label="Laster innhold"><div className="events-spinner" /></div>
             : paragraphs.map((para, i) => (
                 <p key={i} className={i === 0 ? styles.aboutTagline : undefined}>{para}</p>
               ))
@@ -57,6 +58,7 @@ export default function AboutPage() {
 
         <p className={styles.membersPhotoCredit}>Photo: Espen Håkonsen</p>
       </section>
+      </main>
       <Footer />
     </div>
   )
