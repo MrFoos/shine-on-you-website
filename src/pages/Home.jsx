@@ -1,11 +1,13 @@
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../components/Nav'
 import Header from '../components/Header'
 import SocialMedia from '../components/SocialMedia'
 import Footer from '../components/Footer'
 import SEO from '../components/SEO'
+import { supabase } from '../lib/supabase'
 
-const MUSIC_GROUP_SCHEMA = {
+const BASE_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'MusicGroup',
   name: 'Shine On You',
@@ -13,14 +15,26 @@ const MUSIC_GROUP_SCHEMA = {
   url: 'https://shineonyou.no',
   genre: 'Rock',
   foundingLocation: { '@type': 'Place', name: 'Norway' },
-  sameAs: [
-    'https://www.facebook.com/ShineOnU21',
-    'https://www.instagram.com/shineonyou_official/',
-    'https://www.youtube.com/@shineonyou-gq7uc',
-  ],
 }
 
 export default function Home() {
+  const [sameAs, setSameAs] = useState([])
+
+  useEffect(() => {
+    supabase
+      .from('settings')
+      .select('facebook_url, instagram_url, youtube_url')
+      .eq('id', 1)
+      .single()
+      .then(({ data }) => {
+        if (data) {
+          setSameAs([data.facebook_url, data.instagram_url, data.youtube_url].filter(Boolean))
+        }
+      })
+  }, [])
+
+  const schema = { ...BASE_SCHEMA, sameAs }
+
   return (
     <div className="container">
       <SEO
@@ -29,7 +43,7 @@ export default function Home() {
         canonicalPath="/"
       />
       <Helmet>
-        <script type="application/ld+json">{JSON.stringify(MUSIC_GROUP_SCHEMA)}</script>
+        <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
       <Nav />
       <main id="main-content">
