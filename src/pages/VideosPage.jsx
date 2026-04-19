@@ -29,7 +29,7 @@ export default function VideosPage() {
           <h1>Videos</h1>
 
           {loading ? (
-            <div role="status" aria-label="Laster videoer"><div className="events-spinner" /></div>
+            <div role="status" aria-label="Loading videos"><div className="events-spinner" /></div>
           ) : videos.length === 0 ? (
             <p className={styles.empty}>No videos have been added yet.</p>
           ) : (

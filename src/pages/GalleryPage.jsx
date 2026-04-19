@@ -104,7 +104,7 @@ export default function GalleryPage() {
         <h1>Gallery</h1>
 
         {loading ? (
-          <div role="status" aria-label="Laster bilder"><div className="events-spinner" /></div>
+          <div role="status" aria-label="Loading images"><div className="events-spinner" /></div>
         ) : (
           <>
             <div className={styles.galleryGrid}>
@@ -113,7 +113,7 @@ export default function GalleryPage() {
                   key={img.id}
                   className={styles.galleryItem}
                   onClick={(e) => { triggerRef.current = e.currentTarget; setSelected(i) }}
-                  aria-label={`Åpne bilde ${i + 1}`}
+                  aria-label={`Open image ${i + 1}`}
                 >
                   <img src={getUrl(img.storage_path)} alt={img.alt} loading="lazy" />
                 </button>
@@ -135,19 +135,19 @@ export default function GalleryPage() {
           className={styles.lightbox}
           role="dialog"
           aria-modal="true"
-          aria-label={`Bilde ${selected + 1} av ${images.length}`}
+          aria-label={`Image ${selected + 1} of ${images.length}`}
           onClick={close}
         >
           <button
             ref={closeButtonRef}
             className={styles.lightboxClose}
             onClick={close}
-            aria-label="Lukk bildevisning"
+            aria-label="Close gallery"
           >✕</button>
           <button
             className={styles.lightboxPrev}
             onClick={(e) => { e.stopPropagation(); prev() }}
-            aria-label="Forrige bilde"
+            aria-label="Previous image"
           >‹</button>
           <div className={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
             <img src={getUrl(images[selected].storage_path)} alt={images[selected].alt} />
@@ -155,7 +155,7 @@ export default function GalleryPage() {
           <button
             className={styles.lightboxNext}
             onClick={(e) => { e.stopPropagation(); next() }}
-            aria-label="Neste bilde"
+            aria-label="Next image"
           >›</button>
         </div>
       )}
