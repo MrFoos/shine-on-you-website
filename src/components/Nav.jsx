@@ -11,6 +11,7 @@ export default function Nav() {
           <li><NavLink to="/tour">Tour</NavLink></li>
           <li><NavLink to="/about">About</NavLink></li>
           <li><NavLink to="/gallery">Gallery</NavLink></li>
+          <li><NavLink to="/videos">Videos</NavLink></li>
         </ul>
       </nav>
     </>

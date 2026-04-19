@@ -134,6 +134,12 @@
   background: #1e1e1e;
   padding: 10px 14px;
   border-radius: 6px;
+  cursor: grab;
+}
+
+.videoDragOver {
+  outline: 2px dashed #e63946;
+  opacity: 0.7;
 }
 
 .videoItem span,
