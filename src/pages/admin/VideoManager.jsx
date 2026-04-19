@@ -8,6 +8,8 @@ export default function VideoManager() {
   const [title, setTitle] = useState('')
   const [adding, setAdding] = useState(false)
   const [dragOverIndex, setDragOverIndex] = useState(null)
+  const [editingId, setEditingId] = useState(null)
+  const [editFields, setEditFields] = useState({ youtube_id: '', title: '' })
   const dragIndexRef = useRef(null)
 
   const fetch = async () => {
@@ -31,6 +33,23 @@ export default function VideoManager() {
     if (!window.confirm('Slette denne videoen?')) return
     await supabase.from('videos').delete().eq('id', id)
     fetch()
+  }
+
+  const handleEditStart = (v) => {
+    setEditingId(v.id)
+    setEditFields({ youtube_id: v.youtube_id, title: v.title ?? '' })
+  }
+
+  const handleEditSave = async () => {
+    await supabase.from('videos')
+      .update({ youtube_id: editFields.youtube_id.trim(), title: editFields.title })
+      .eq('id', editingId)
+    setEditingId(null)
+    fetch()
+  }
+
+  const handleEditCancel = () => {
+    setEditingId(null)
   }
 
   const handleDragStart = (index) => {
@@ -97,16 +116,44 @@ export default function VideoManager() {
           <div
             key={v.id}
             className={`${shared.videoItem}${dragOverIndex === i ? ` ${shared.videoDragOver}` : ''}`}
-            draggable
+            draggable={editingId === null}
             onDragStart={() => handleDragStart(i)}
             onDragOver={(e) => handleDragOver(e, i)}
             onDrop={(e) => handleDrop(e, i)}
             onDragEnd={handleDragEnd}
           >
-            <span>⠿</span>
-            <span>{v.title || v.youtube_id}</span>
-            <a href={`https://www.youtube.com/watch?v=${v.youtube_id}`} target="_blank" rel="noreferrer">Se</a>
-            <button onClick={() => handleDelete(v.id)}>Slett</button>
+            {editingId === v.id ? (
+              <>
+                <div className={shared.formRow} style={{ flex: 1 }}>
+                  <input
+                    type="text"
+                    value={editFields.youtube_id}
+                    onChange={(e) => setEditFields(f => ({ ...f, youtube_id: e.target.value }))}
+                    placeholder="YouTube Video ID"
+                  />
+                </div>
+                <div className={shared.formRow} style={{ flex: 2 }}>
+                  <input
+                    type="text"
+                    value={editFields.title}
+                    onChange={(e) => setEditFields(f => ({ ...f, title: e.target.value }))}
+                    placeholder="Tittel (valgfritt)"
+                  />
+                </div>
+                <div className={shared.formActions}>
+                  <button type="button" onClick={handleEditSave}>Lagre</button>
+                  <button type="button" onClick={handleEditCancel}>Avbryt</button>
+                </div>
+              </>
+            ) : (
+              <>
+                <span>⠿</span>
+                <span>{v.title || v.youtube_id}</span>
+                <a href={`https://www.youtube.com/watch?v=${v.youtube_id}`} target="_blank" rel="noreferrer">Se</a>
+                <button type="button" onClick={() => handleEditStart(v)}>Endre</button>
+                <button type="button" onClick={() => handleDelete(v.id)}>Slett</button>
+              </>
+            )}
           </div>
         ))}
       </div>
