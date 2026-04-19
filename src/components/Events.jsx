@@ -70,7 +70,7 @@ export default function Events() {
 
   if (loading) return (
     <section id="events" className={styles.upcomingEvents}>
-      <div role="status" aria-label="Laster konserter">
+      <div role="status" aria-label="Loading shows">
         <div className="events-spinner" />
       </div>
     </section>

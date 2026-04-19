@@ -39,7 +39,7 @@ export default function AboutPage() {
         <h1>About</h1>
         <div className={styles.aboutBio}>
           {loading
-            ? <div role="status" aria-label="Laster innhold"><div className="events-spinner" /></div>
+            ? <div role="status" aria-label="Loading content"><div className="events-spinner" /></div>
             : paragraphs.map((para, i) => (
                 <p key={i} className={i === 0 ? styles.aboutTagline : undefined}>{para}</p>
               ))
