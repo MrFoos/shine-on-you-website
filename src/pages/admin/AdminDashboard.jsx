@@ -7,6 +7,7 @@ import GalleryManager from './GalleryManager'
 import PressKitManager from './PressKitManager'
 import SiteSettingsEditor from './SiteSettingsEditor'
 import BandMembersManager from './BandMembersManager'
+import AuditLog from './AuditLog'
 import styles from './AdminDashboard.module.css'
 
 const TABS = [
@@ -17,6 +18,7 @@ const TABS = [
   { id: 'gallery', label: 'Galleri' },
   { id: 'presskit', label: 'Press Kit' },
   { id: 'settings', label: 'Innstillinger' },
+  { id: 'auditlog', label: 'Endringslogg' },
 ]
 
 export default function AdminDashboard() {
@@ -77,6 +79,7 @@ export default function AdminDashboard() {
         {activeTab === 'gallery' && <GalleryManager />}
         {activeTab === 'presskit' && <PressKitManager />}
         {activeTab === 'settings' && <SiteSettingsEditor />}
+        {activeTab === 'auditlog' && <AuditLog />}
       </div>
     </div>
   )

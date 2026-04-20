@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { supabase } from '../../lib/supabase'
+import { storageUpload, storageRemove } from '../../lib/auditStorage'
 import shared from './AdminShared.module.css'
 
 export default function BandMembersManager() {
@@ -26,7 +27,7 @@ export default function BandMembersManager() {
 
     const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_')
     const path = `${Date.now()}-${safeName}`
-    const { error } = await supabase.storage.from('members').upload(path, file)
+    const { error } = await storageUpload('members', path, file)
     if (!error) {
       await supabase.from('members').insert([{
         name: newName.trim(),
@@ -51,7 +52,7 @@ export default function BandMembersManager() {
 
   const handleDelete = async (member) => {
     if (!window.confirm(`Slette ${member.name}?`)) return
-    await supabase.storage.from('members').remove([member.storage_path])
+    await storageRemove('members', [member.storage_path])
     await supabase.from('members').delete().eq('id', member.id)
     fetchMembers()
   }

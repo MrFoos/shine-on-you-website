@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { supabase } from '../../lib/supabase'
+import { storageUpload, storageRemove } from '../../lib/auditStorage'
 import shared from './AdminShared.module.css'
 
 export default function PressKitManager() {
@@ -21,7 +22,7 @@ export default function PressKitManager() {
     setUploading(true)
 
     const path = `${Date.now()}-${file.name}`
-    const { error } = await supabase.storage.from('presskit').upload(path, file)
+    const { error } = await storageUpload('presskit', path, file)
     if (!error) {
       await supabase.from('presskit_files').insert([{ label: label.trim(), storage_path: path }])
     }
@@ -34,7 +35,7 @@ export default function PressKitManager() {
 
   const handleDelete = async (item) => {
     if (!window.confirm(`Slette "${item.label}"?`)) return
-    await supabase.storage.from('presskit').remove([item.storage_path])
+    await storageRemove('presskit', [item.storage_path])
     await supabase.from('presskit_files').delete().eq('id', item.id)
     fetch()
   }
