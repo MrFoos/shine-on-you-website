@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { supabase } from '../../lib/supabase'
+import { storageUpload, storageRemove } from '../../lib/auditStorage'
 import shared from './AdminShared.module.css'
 
 export default function GalleryManager() {
@@ -25,7 +26,7 @@ export default function GalleryManager() {
     for (const file of files) {
       const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_')
       const path = `${Date.now()}-${safeName}`
-      const { error } = await supabase.storage.from('gallery').upload(path, file)
+      const { error } = await storageUpload('gallery', path, file)
       if (!error) {
         await supabase.from('gallery').insert([{
           storage_path: path,
@@ -42,7 +43,7 @@ export default function GalleryManager() {
 
   const handleDelete = async (image) => {
     if (!window.confirm('Slette dette bildet?')) return
-    await supabase.storage.from('gallery').remove([image.storage_path])
+    await storageRemove('gallery', [image.storage_path])
     await supabase.from('gallery').delete().eq('id', image.id)
     fetchImages()
   }
