@@ -16,4 +16,8 @@
     <loc>https://shineonyou.no/gallery</loc>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://shineonyou.no/videos</loc>
+    <priority>0.5</priority>
+  </url>
 </urlset>
