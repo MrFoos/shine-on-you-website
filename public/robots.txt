@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /tourledger
+Disallow: /tourledger/
 
 Sitemap: https://shineonyou.no/sitemap.xml
