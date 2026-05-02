@@ -135,6 +135,11 @@
     gap: 12px;
   }
 
+  .eventInfo {
+    flex-direction: column;
+    gap: 4px;
+  }
+
   .eventVenue,
   .eventCity {
     font-size: 16px;

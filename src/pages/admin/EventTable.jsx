@@ -11,7 +11,7 @@ export default function EventTable() {
   const [saveError, setSaveError] = useState(null)
 
   const fetch = async () => {
-    const { data, error } = await supabase.from('events').select('*').order('date')
+    const { data, error } = await supabase.from('events').select('*').order('date', { ascending: false })
     if (error) setFetchError('Klarte ikke hente arrangementer.')
     else setEvents(data ?? [])
   }
