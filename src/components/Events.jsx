@@ -19,7 +19,7 @@ function EventCard({ event, past }) {
   const year = d.getFullYear()
 
   return (
-    <div className={`${styles.event}${past ? ` ${styles.eventPast}` : ''}`}>
+    <div className={styles.event}>
       <div className={styles.eventDateBlock}>
         <span className={styles.eventDay}>{day}</span>
         <span className={styles.eventMonth}>{month}</span>
@@ -31,9 +31,11 @@ function EventCard({ event, past }) {
             <span className={styles.eventCity}>{event.city}, {event.country}</span>
             <span className={styles.eventVenue}>{event.venue}</span>
           </div>
-          <div className={styles.tickets}>
-            <TicketLabel event={event} />
-          </div>
+          {!past && (
+            <div className={styles.tickets}>
+              <TicketLabel event={event} />
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -43,7 +45,7 @@ function EventCard({ event, past }) {
 export default function Events() {
   const [upcoming, setUpcoming] = useState([])
   const [past, setPast] = useState([])
-  const [settings, setSettings] = useState({ tour_heading: 'Tour 2026', past_shows_heading: 'Past shows 2026' })
+  const [settings, setSettings] = useState({ tour_heading: 'Tour 2026', past_shows_heading: 'Past shows' })
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
 
@@ -58,8 +60,8 @@ export default function Events() {
       if (error) {
         setError(true)
       } else if (data) {
-        setUpcoming(data.filter((e) => e.date >= today))
-        setPast(data.filter((e) => e.date < today).reverse())
+        setUpcoming(data.filter((e) => e.date >= today && !e.is_history))
+        setPast(data.filter((e) => e.date < today || e.is_history).reverse())
       }
       if (settingsData) setSettings(settingsData)
       setLoading(false)
