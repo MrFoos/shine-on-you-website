@@ -19,10 +19,6 @@
   border-bottom: 1px solid #2e2e2e;
 }
 
-.eventPast {
-  opacity: 0.45;
-  margin-bottom: 88px;
-}
 
 .eventDateBlock {
   display: flex;
@@ -49,7 +45,7 @@
 
 .eventYear {
   font-size: 13px;
-  color: #555;
+  color: #fff;
   letter-spacing: 0.08em;
 }
 

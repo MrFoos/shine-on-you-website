@@ -8,6 +8,7 @@ const EMPTY = {
   country: '',
   ticket_url: '',
   ticket_status: 'available',
+  is_history: false,
 }
 
 export default function EventForm({ initial, onSave, onCancel }) {
@@ -52,6 +53,16 @@ export default function EventForm({ initial, onSave, onCancel }) {
           <option value="coming_soon">Coming Soon</option>
           <option value="sold_out">Sold Out</option>
         </select>
+      </div>
+      <div className={shared.formRow}>
+        <label>
+          <input
+            type="checkbox"
+            checked={!!form.is_history}
+            onChange={(e) => setForm((f) => ({ ...f, is_history: e.target.checked }))}
+          />
+          {' '}Flytt til History (Past shows)
+        </label>
       </div>
       <div className={shared.formActions}>
         <button type="submit" disabled={saving}>{saving ? 'Lagrer…' : 'Lagre'}</button>

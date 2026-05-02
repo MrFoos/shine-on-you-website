@@ -76,7 +76,7 @@ export default function EventTable() {
               <td>{e.venue}</td>
               <td>{e.city}</td>
               <td>{e.country}</td>
-              <td>{e.ticket_status}</td>
+              <td>{e.is_history ? 'HISTORY' : e.ticket_status}</td>
               <td>
                 <button onClick={() => setEditing(e)}>Rediger</button>
                 <button onClick={() => handleDelete(e.id)}>Slett</button>
