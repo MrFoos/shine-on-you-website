@@ -94,8 +94,8 @@ export default function GalleryPage() {
   return (
     <div className="container">
       <SEO
-        title="Bilder – Shine On You Pink Floyd Tribute"
-        description="Fotogalleri fra Shine On You sine konserter og opptredener."
+        title="Gallery – Shine On You Pink Floyd Tribute"
+        description="Photo gallery from Shine On You concerts and performances."
         canonicalPath="/gallery"
       />
       <Nav />

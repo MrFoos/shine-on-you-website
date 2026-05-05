@@ -20,7 +20,7 @@ export default function VideosPage() {
     <div className="container">
       <SEO
         title="Videos – Shine On You Pink Floyd Tribute"
-        description="Se videoer fra Shine On You, Norges fremste Pink Floyd-tributeband."
+        description="Watch videos from Shine On You, Norway's premier Pink Floyd tribute band."
         canonicalPath="/videos"
       />
       <Nav />

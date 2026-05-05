@@ -7,8 +7,8 @@ export default function TourPage() {
   return (
     <div className="container">
       <SEO
-        title="Konserter & turné – Shine On You"
-        description="Se kommende konserter med Shine On You. Vi spiller over hele Norge og Sverige – sjekk turné-datoer og kjøp billetter."
+        title="Concerts & Tour – Shine On You"
+        description="See upcoming concerts with Shine On You. We perform all across Norway and Sweden – check tour dates and buy tickets."
         canonicalPath="/tour"
       />
       <Nav />
