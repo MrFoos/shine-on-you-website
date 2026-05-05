@@ -39,7 +39,7 @@ export default function Home() {
     <div className="container">
       <SEO
         title="Shine On You – Pink Floyd Tribute Band"
-        description="Shine On You er Norges fremste Pink Floyd tributeband. Vi fremfører klassikere fra The Dark Side of the Moon, The Wall og Wish You Were Here live i Norge, Sverige og Skandinavia."
+        description="Shine On You is Norway's premier Pink Floyd tribute band. Performing classics from The Dark Side of the Moon, The Wall and Wish You Were Here live in Norway, Sweden and Scandinavia."
         canonicalPath="/"
       />
       <Helmet>

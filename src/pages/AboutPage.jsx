@@ -29,8 +29,8 @@ export default function AboutPage() {
   return (
     <div className="container">
       <SEO
-        title="Om bandet – Shine On You Pink Floyd Tribute"
-        description="Lær mer om Shine On You, Pink Floyd tributebandet fra Norge. 10 musikere dedikert til å gjenskape Pink Floyds unike lydlandskap."
+        title="About the Band – Shine On You Pink Floyd Tribute"
+        description="Learn more about Shine On You, the Pink Floyd tribute band from Norway. 10 musicians dedicated to recreating Pink Floyd's unique soundscapes."
         canonicalPath="/about"
       />
       <Nav />
