@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { supabase } from '../lib/supabase'
@@ -26,13 +27,30 @@ export default function AboutPage() {
   const getMemberUrl = (path) =>
     supabase.storage.from('members').getPublicUrl(path).data.publicUrl
 
+  const personSchemas = members.map((m) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: m.name,
+    image: getMemberUrl(m.storage_path),
+    memberOf: {
+      '@type': 'MusicGroup',
+      name: 'Shine On You',
+      url: 'https://shineonyou.no',
+    },
+  }))
+
   return (
     <div className="container">
       <SEO
         title="About the Band – Shine On You Pink Floyd Tribute"
-        description="Learn more about Shine On You, the Pink Floyd tribute band from Norway. 10 musicians dedicated to recreating Pink Floyd's unique soundscapes."
+        description="Meet the musicians behind Shine On You, Scandinavia's leading Pink Floyd tribute band."
         canonicalPath="/about"
       />
+      {personSchemas.length > 0 && (
+        <Helmet>
+          <script type="application/ld+json">{JSON.stringify(personSchemas)}</script>
+        </Helmet>
+      )}
       <Nav />
       <main id="main-content">
       <section className={styles.aboutPage}>

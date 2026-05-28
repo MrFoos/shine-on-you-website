@@ -35,6 +35,12 @@
   color: #aaa;
 }
 
+.fieldHint {
+  font-size: 11px;
+  color: #666;
+  font-weight: normal;
+}
+
 .formRow input,
 .formRow select,
 .formRow textarea {
@@ -117,6 +123,32 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 13px;
+}
+
+.galleryAltRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.galleryAltRow input {
+  flex: 1;
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: #1e1e1e;
+  color: #fff;
+  font-size: 12px;
+}
+
+.altInputWarning {
+  border-color: #e6a000 !important;
+}
+
+.altWarning {
+  color: #e6a000;
+  font-size: 14px;
+  flex-shrink: 0;
 }
 
 .videoList,

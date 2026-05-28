@@ -39,8 +39,8 @@ export default function EventForm({ initial, onSave, onCancel }) {
         <input type="text" value={form.city} onChange={set('city')} required />
       </div>
       <div className={shared.formRow}>
-        <label>Land</label>
-        <input type="text" value={form.country} onChange={set('country')} required />
+        <label>Land <span className={shared.fieldHint}>(English, e.g. Norway)</span></label>
+        <input type="text" value={form.country} onChange={set('country')} placeholder="e.g. Norway" required />
       </div>
       <div className={shared.formRow}>
         <label>Billett-URL</label>
