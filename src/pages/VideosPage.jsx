@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { supabase } from '../lib/supabase'
@@ -16,13 +17,27 @@ export default function VideosPage() {
     })
   }, [])
 
+  const videoSchemas = videos.map((v) => ({
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: v.title || `Shine On You – ${v.youtube_id}`,
+    embedUrl: `https://www.youtube.com/embed/${v.youtube_id}`,
+    thumbnailUrl: `https://img.youtube.com/vi/${v.youtube_id}/hqdefault.jpg`,
+    url: `https://www.youtube.com/watch?v=${v.youtube_id}`,
+  }))
+
   return (
     <div className="container">
       <SEO
         title="Videos – Shine On You Pink Floyd Tribute"
-        description="Watch videos from Shine On You, Norway's premier Pink Floyd tribute band."
+        description="Live recordings of Shine On You performing Pink Floyd classics."
         canonicalPath="/videos"
       />
+      {videoSchemas.length > 0 && (
+        <Helmet>
+          <script type="application/ld+json">{JSON.stringify(videoSchemas)}</script>
+        </Helmet>
+      )}
       <Nav />
       <main id="main-content">
         <section className={styles.videosPage}>
