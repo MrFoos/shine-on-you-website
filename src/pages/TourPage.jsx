@@ -17,6 +17,8 @@ function buildMusicEventSchema(event) {
     '@context': 'https://schema.org',
     '@type': 'MusicEvent',
     name: `Shine On You – ${event.venue}`,
+    description: `Shine On You live at ${event.venue} in ${event.city}. A Pink Floyd tribute concert.`,
+    url: event.ticket_url || 'https://shineonyou.no/tour',
     startDate: event.date,
     location: {
       '@type': 'Place',
@@ -28,6 +30,11 @@ function buildMusicEventSchema(event) {
       },
     },
     performer: {
+      '@type': 'MusicGroup',
+      name: 'Shine On You',
+      url: 'https://shineonyou.no',
+    },
+    organizer: {
       '@type': 'MusicGroup',
       name: 'Shine On You',
       url: 'https://shineonyou.no',

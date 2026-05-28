@@ -21,9 +21,15 @@ export default function VideosPage() {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
     name: v.title || `Shine On You – ${v.youtube_id}`,
+    description: v.title
+      ? `${v.title} — live performance by Shine On You, Pink Floyd tribute band.`
+      : "Live performance by Shine On You, Scandinavia's Pink Floyd tribute band.",
     embedUrl: `https://www.youtube.com/embed/${v.youtube_id}`,
     thumbnailUrl: `https://img.youtube.com/vi/${v.youtube_id}/hqdefault.jpg`,
     url: `https://www.youtube.com/watch?v=${v.youtube_id}`,
+    uploadDate: v.created_at
+      ? new Date(v.created_at).toISOString().split('T')[0]
+      : undefined,
   }))
 
   return (

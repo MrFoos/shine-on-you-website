@@ -58,6 +58,8 @@ export default function Home() {
         '@context': 'https://schema.org',
         '@type': 'MusicEvent',
         name: `Shine On You – ${nextEvent.venue}`,
+        description: `Shine On You live at ${nextEvent.venue} in ${nextEvent.city}. A Pink Floyd tribute concert.`,
+        url: nextEvent.ticket_url || 'https://shineonyou.no/tour',
         startDate: nextEvent.date,
         location: {
           '@type': 'Place',
@@ -69,6 +71,7 @@ export default function Home() {
           },
         },
         performer: { '@type': 'MusicGroup', name: 'Shine On You', url: 'https://shineonyou.no' },
+        organizer: { '@type': 'MusicGroup', name: 'Shine On You', url: 'https://shineonyou.no' },
         eventStatus: 'https://schema.org/EventScheduled',
         eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
         ...(nextEvent.ticket_url && {
