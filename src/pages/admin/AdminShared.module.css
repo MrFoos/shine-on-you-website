@@ -52,6 +52,14 @@
   font-size: 15px;
 }
 
+.formRow input[type="checkbox"] {
+  width: auto;
+  align-self: flex-start;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
 .formActions {
   display: flex;
   gap: 8px;

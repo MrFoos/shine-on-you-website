@@ -1,12 +1,10 @@
 import styles from './Footer.module.css'
 
 export default function Footer() {
+  const year = new Date().getFullYear()
   return (
-    <footer>
-      <a className={styles.footerContactBtn} href="mailto:shineonyouband@gmail.com">
-        Contact us
-      </a>
-      <p>&copy; 2026 Shine On You DA. Org.nr: 922 087 857.<br />All rights reserved.</p>
+    <footer className={styles.footer}>
+      <p className={styles.copy}>© {year} Shine On You DA · Org.nr 922 087 857</p>
     </footer>
   )
 }

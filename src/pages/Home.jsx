@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../components/Nav'
-import Header from '../components/Header'
-import SocialMedia from '../components/SocialMedia'
+import Hero from '../components/Hero'
 import Footer from '../components/Footer'
 import SEO from '../components/SEO'
 import { supabase } from '../lib/supabase'
+import styles from './Home.module.css'
 
 const BASE_SCHEMA = {
   '@context': 'https://schema.org',
@@ -24,17 +24,14 @@ const TICKET_AVAILABILITY = {
 }
 
 export default function Home() {
-  const [sameAs, setSameAs] = useState([])
+  const [settings, setSettings] = useState({})
   const [nextEvent, setNextEvent] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const today = new Date().toISOString().split('T')[0]
     Promise.all([
-      supabase
-        .from('settings')
-        .select('facebook_url, instagram_url, youtube_url')
-        .eq('id', 1)
-        .single(),
+      supabase.from('settings').select('*').eq('id', 1).single(),
       supabase
         .from('events')
         .select('*')
@@ -44,13 +41,12 @@ export default function Home() {
         .limit(1)
         .single(),
     ]).then(([{ data: settingsData }, { data: eventData }]) => {
-      if (settingsData) {
-        setSameAs([settingsData.facebook_url, settingsData.instagram_url, settingsData.youtube_url].filter(Boolean))
-      }
+      if (settingsData) setSettings(settingsData)
       if (eventData) setNextEvent(eventData)
-    })
+    }).finally(() => setLoading(false))
   }, [])
 
+  const sameAs = [settings.facebook_url, settings.instagram_url, settings.youtube_url].filter(Boolean)
   const musicGroupSchema = { ...BASE_SCHEMA, sameAs }
 
   const nextEventSchema = nextEvent
@@ -100,8 +96,14 @@ export default function Home() {
       <Nav />
       <main id="main-content">
         <h1 className="sr-only">Shine On You</h1>
-        <Header />
-        <SocialMedia />
+        <Hero
+          settings={settings}
+          nextEvent={nextEvent}
+          facebookUrl={settings.facebook_url}
+          instagramUrl={settings.instagram_url}
+          youtubeUrl={settings.youtube_url}
+          loading={loading}
+        />
       </main>
       <Footer />
     </div>

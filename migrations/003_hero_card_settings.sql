@@ -1,0 +1,4 @@
+ALTER TABLE settings
+  ADD COLUMN IF NOT EXISTS hero_card_align   TEXT    DEFAULT 'top',
+  ADD COLUMN IF NOT EXISTS hero_card_opacity NUMERIC DEFAULT 0.82,
+  ADD COLUMN IF NOT EXISTS hero_card_visible BOOLEAN DEFAULT true;

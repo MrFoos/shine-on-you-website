@@ -1,7 +1,8 @@
 import { Helmet } from 'react-helmet-async'
+import { OG_IMAGE } from '../config/branding'
 
 const BASE_URL = 'https://shineonyou.no'
-const DEFAULT_OG_IMAGE = `${BASE_URL}/images/Banner Web.png`
+const DEFAULT_OG_IMAGE = `${BASE_URL}${OG_IMAGE}`
 
 export default function SEO({ title, description, canonicalPath = '/', ogImage }) {
   const fullTitle = title

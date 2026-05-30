@@ -6,6 +6,7 @@ import VideoManager from './VideoManager'
 import GalleryManager from './GalleryManager'
 import PressKitManager from './PressKitManager'
 import SiteSettingsEditor from './SiteSettingsEditor'
+import ForsidaEditor from './ForsidaEditor'
 import BandMembersManager from './BandMembersManager'
 import AuditLog from './AuditLog'
 import styles from './AdminDashboard.module.css'
@@ -13,6 +14,7 @@ import styles from './AdminDashboard.module.css'
 const TABS = [
   { id: 'events', label: 'Events' },
   { id: 'about', label: 'Om bandet' },
+  { id: 'forsiden', label: 'Forsiden' },
   { id: 'members', label: 'Bandmedlemmer' },
   { id: 'videos', label: 'Videoer' },
   { id: 'gallery', label: 'Galleri' },
@@ -74,6 +76,7 @@ export default function AdminDashboard() {
       >
         {activeTab === 'events' && <EventTable />}
         {activeTab === 'about' && <AboutEditor />}
+        {activeTab === 'forsiden' && <ForsidaEditor />}
         {activeTab === 'members' && <BandMembersManager />}
         {activeTab === 'videos' && <VideoManager />}
         {activeTab === 'gallery' && <GalleryManager />}
