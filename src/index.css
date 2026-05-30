@@ -20,18 +20,6 @@ body {
   padding:0;
 }
 
-header{
-    background-color:#000;
-    color:#fff;
-    padding:20px 0;
-    text-align:center;
-}
-
-header img{
-    max-width:100%;
-    height:auto
-}
-
 section{
     padding:20px;
 }
@@ -99,9 +87,3 @@ h2{
   to { transform: rotate(360deg); }
 }
 
-/* Header responsive adjustment (tied to SocialMedia layout shift) */
-@media (max-width: 899px) {
-  header {
-    padding-top: 36px;
-  }
-}

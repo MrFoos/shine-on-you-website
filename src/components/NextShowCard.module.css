@@ -1,0 +1,76 @@
+.card {
+  border: 1px solid #444;
+  padding: 32px;
+  background: rgba(0, 0, 0, var(--card-bg-alpha, 0.82));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.kicker {
+  color: #cc0000;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 11px;
+  font-weight: 600;
+  margin: 0 0 24px;
+}
+
+.dateBlock {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.day {
+  font-size: 56px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
+.month {
+  font-size: 20px;
+  font-weight: 600;
+  color: #cc0000;
+  letter-spacing: 0.1em;
+}
+
+.year {
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.05em;
+}
+
+.location {
+  color: #aaa;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 6px;
+}
+
+.venue {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 24px;
+}
+
+.ticketsLink {
+  display: inline-block;
+  padding: 10px 24px;
+  border: 1.5px solid #cc0000;
+  color: #cc0000;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ticketsLink:hover {
+  background: #cc0000;
+  color: #fff;
+}
