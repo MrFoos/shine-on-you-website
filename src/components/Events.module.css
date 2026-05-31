@@ -38,7 +38,7 @@
 .eventMonth {
   font-size: 14px;
   font-weight: 700;
-  color: #cc0000;
+  color: #ff2200;
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -88,7 +88,7 @@
 
 .tickets {
   flex-shrink: 0;
-  color: #cc0000;
+  color: #ff2200;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -96,9 +96,9 @@
 }
 
 .tickets a {
-  color: #cc0000;
+  color: #ff2200;
   text-decoration: none;
-  border: 2px solid #cc0000;
+  border: 2px solid #ff2200;
   border-radius: 3px;
   padding: 9px 22px;
   display: inline-block;
@@ -106,14 +106,14 @@
 }
 
 .tickets a:hover {
-  background: #cc0000;
+  background: #ff2200;
   color: #fff;
 }
 
 .tickets div {
   padding: 9px 22px;
   display: inline-block;
-  color: #555;
+  color: #888;
 }
 
 @media (max-width: 599px) {
