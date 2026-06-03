@@ -2,8 +2,8 @@
   border: 1px solid #444;
   padding: 32px;
   background: rgba(0, 0, 0, var(--card-bg-alpha, 0.82));
-  backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 
 .eyebrow {
