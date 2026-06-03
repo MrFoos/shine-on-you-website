@@ -54,7 +54,7 @@ export default function Hero({ settings = {}, nextEvent, facebookUrl, instagramU
       style={bgImage ? { backgroundImage: `url(${bgImage})` } : undefined}
     >
       {bgImage && (
-        <div className={styles.overlay} style={{ opacity: overlayOpacity }} />
+        <div className={styles.overlay} style={{ background: `rgba(0, 0, 0, ${overlayOpacity})` }} />
       )}
       {bgImage && heroBackgroundCredit && (
         <p className={styles.heroCredit}>Photo: {heroBackgroundCredit}</p>
