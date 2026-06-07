@@ -19,7 +19,7 @@ function EventCard({ event, past }) {
   const year = d.getFullYear()
 
   return (
-    <div className={styles.event}>
+    <div className={`${styles.event}${past ? ` ${styles.pastEvent}` : ''}`}>
       <div className={styles.eventDateBlock}>
         <span className={styles.eventDay}>{day}</span>
         <span className={styles.eventMonth}>{month}</span>

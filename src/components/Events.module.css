@@ -20,6 +20,23 @@
 }
 
 
+.pastEvent .eventDay,
+.pastEvent .eventYear {
+  color: #aaa;
+}
+
+.pastEvent .eventMonth {
+  color: #888;
+}
+
+.pastEvent .eventVenue {
+  color: #aaa;
+}
+
+.pastEvent .eventCity {
+  color: #777;
+}
+
 .eventDateBlock {
   display: flex;
   flex-direction: column;
