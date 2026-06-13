@@ -82,11 +82,18 @@ console.log('[generate-static] public/llms.txt written.')
 
 // ── index.html static fallback ───────────────────────────────────────────────
 
+// DB-verdier (venue/city/country) skrives som rå HTML inn i index.html, så de må
+// escapes for å unngå at admin-innhold (eller skrivetilgang via anon-nøkkel) blir HTML-injeksjon.
+const escapeHtml = (s) =>
+  String(s ?? '').replace(/[&<>"']/g, (c) =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
+  )
+
 const concertHtml = upcoming.length
   ? `<ul>${upcoming.slice(0, 5).map((e) => {
       const d = new Date(e.date)
       const label = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
-      return `<li>${label} — ${e.venue}, ${e.city}, ${e.country}</li>`
+      return `<li>${label} — ${escapeHtml(e.venue)}, ${escapeHtml(e.city)}, ${escapeHtml(e.country)}</li>`
     }).join('')}</ul>`
   : '<p>No upcoming concerts scheduled.</p>'
 
