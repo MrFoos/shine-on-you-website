@@ -103,6 +103,13 @@
   color: #888;
 }
 
+.eventNote {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #999;
+}
+
 .tickets {
   flex-shrink: 0;
   color: #ff2200;

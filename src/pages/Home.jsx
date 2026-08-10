@@ -5,6 +5,7 @@ import Hero from '../components/Hero'
 import Footer from '../components/Footer'
 import SEO from '../components/SEO'
 import { supabase } from '../lib/supabase'
+import { eventStatusFor } from './TourPage'
 import styles from './Home.module.css'
 
 const BASE_SCHEMA = {
@@ -55,7 +56,7 @@ export default function Home() {
         '@type': 'MusicEvent',
         name: `Shine On You – ${nextEvent.venue}`,
         description: `Shine On You live at ${nextEvent.venue} in ${nextEvent.city}. A Pink Floyd tribute concert.`,
-        url: nextEvent.ticket_url || 'https://shineonyou.no/tour',
+        url: (nextEvent.ticket_status !== 'postponed' && nextEvent.ticket_url) || 'https://shineonyou.no/tour',
         startDate: nextEvent.date,
         location: {
           '@type': 'Place',
@@ -68,9 +69,9 @@ export default function Home() {
         },
         performer: { '@type': 'MusicGroup', name: 'Shine On You', url: 'https://shineonyou.no' },
         organizer: { '@type': 'MusicGroup', name: 'Shine On You', url: 'https://shineonyou.no' },
-        eventStatus: 'https://schema.org/EventScheduled',
+        eventStatus: eventStatusFor(nextEvent),
         eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-        ...(nextEvent.ticket_url && {
+        ...(nextEvent.ticket_url && nextEvent.ticket_status !== 'postponed' && {
           offers: {
             '@type': 'Offer',
             url: nextEvent.ticket_url,

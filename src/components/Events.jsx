@@ -9,6 +9,9 @@ function TicketLabel({ event }) {
   if (event.ticket_status === 'coming_soon') {
     return <div>TICKETS – Coming Soon</div>
   }
+  if (event.ticket_status === 'postponed') {
+    return <div>POSTPONED</div>
+  }
   return <div>SOLD OUT!</div>
 }
 
@@ -37,6 +40,7 @@ function EventCard({ event, past }) {
             </div>
           )}
         </div>
+        {!past && event.note && <p className={styles.eventNote}>{event.note}</p>}
       </div>
     </div>
   )
