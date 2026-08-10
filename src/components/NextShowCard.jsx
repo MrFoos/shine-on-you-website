@@ -16,7 +16,8 @@ export default function NextShowCard({ event, kicker }) {
       </div>
       <p className={styles.location}>{event.city}, {event.country}</p>
       <p className={styles.venue}>{event.venue}</p>
-      {event.ticket_url && (
+      {event.note && <p className={styles.note}>{event.note}</p>}
+      {event.ticket_url && event.ticket_status === 'available' && (
         <a
           href={event.ticket_url}
           className={styles.ticketsLink}

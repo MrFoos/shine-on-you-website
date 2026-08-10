@@ -12,13 +12,21 @@ const TICKET_AVAILABILITY = {
   sold_out: 'https://schema.org/SoldOut',
 }
 
+// A postponed show keeps its old date until the new one is confirmed, so we
+// flag it to search engines rather than presenting the date as final.
+export function eventStatusFor(event) {
+  return event.ticket_status === 'postponed'
+    ? 'https://schema.org/EventPostponed'
+    : 'https://schema.org/EventScheduled'
+}
+
 function buildMusicEventSchema(event) {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'MusicEvent',
     name: `Shine On You – ${event.venue}`,
     description: `Shine On You live at ${event.venue} in ${event.city}. A Pink Floyd tribute concert.`,
-    url: event.ticket_url || 'https://shineonyou.no/tour',
+    url: (event.ticket_status !== 'postponed' && event.ticket_url) || 'https://shineonyou.no/tour',
     startDate: event.date,
     location: {
       '@type': 'Place',
@@ -39,11 +47,11 @@ function buildMusicEventSchema(event) {
       name: 'Shine On You',
       url: 'https://shineonyou.no',
     },
-    eventStatus: 'https://schema.org/EventScheduled',
+    eventStatus: eventStatusFor(event),
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   }
 
-  if (event.ticket_url) {
+  if (event.ticket_url && event.ticket_status !== 'postponed') {
     schema.offers = {
       '@type': 'Offer',
       url: event.ticket_url,

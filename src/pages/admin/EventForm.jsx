@@ -8,6 +8,7 @@ const EMPTY = {
   country: '',
   ticket_url: '',
   ticket_status: 'available',
+  note: '',
   is_history: false,
 }
 
@@ -52,7 +53,17 @@ export default function EventForm({ initial, onSave, onCancel }) {
           <option value="available">Available</option>
           <option value="coming_soon">Coming Soon</option>
           <option value="sold_out">Sold Out</option>
+          <option value="postponed">Postponed</option>
         </select>
+      </div>
+      <div className={shared.formRow}>
+        <label>Notat <span className={shared.fieldHint}>(vises under venue, engelsk — la stå tom for å skjule)</span></label>
+        <input
+          type="text"
+          value={form.note ?? ''}
+          onChange={set('note')}
+          placeholder="e.g. New date to be announced"
+        />
       </div>
       <div className={shared.formRow}>
         <label>

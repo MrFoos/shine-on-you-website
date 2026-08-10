@@ -58,6 +58,18 @@
   margin: 0 0 24px;
 }
 
+/* Tighten the venue's gap when a note sits directly under it. */
+.venue:has(+ .note) {
+  margin-bottom: 8px;
+}
+
+.note {
+  color: #aaa;
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 0 0 24px;
+}
+
 .ticketsLink {
   display: inline-block;
   padding: 10px 24px;
