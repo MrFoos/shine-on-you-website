@@ -174,4 +174,11 @@
     padding: 8px 18px;
     font-size: 13px;
   }
+
+  /* Stacked layout: the status labels have no border, so their horizontal
+     padding only exists to line up with the bordered Tickets button on
+     desktop. Here it reads as an indent against the city/venue above. */
+  .tickets div {
+    padding: 4px 0;
+  }
 }
