@@ -5,6 +5,7 @@ import Hero from '../components/Hero'
 import Footer from '../components/Footer'
 import SEO from '../components/SEO'
 import { supabase } from '../lib/supabase'
+import { todayLocalISO } from '../lib/date'
 import { eventStatusFor } from './TourPage'
 import styles from './Home.module.css'
 
@@ -30,7 +31,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const today = new Date().toISOString().split('T')[0]
+    const today = todayLocalISO()
     Promise.all([
       supabase.from('settings').select('*').eq('id', 1).single(),
       supabase

@@ -5,6 +5,7 @@ import Events from '../components/Events'
 import Footer from '../components/Footer'
 import SEO from '../components/SEO'
 import { supabase } from '../lib/supabase'
+import { todayLocalISO } from '../lib/date'
 
 const TICKET_AVAILABILITY = {
   available: 'https://schema.org/InStock',
@@ -66,7 +67,7 @@ export default function TourPage() {
   const [upcomingEvents, setUpcomingEvents] = useState([])
 
   useEffect(() => {
-    const today = new Date().toISOString().split('T')[0]
+    const today = todayLocalISO()
     supabase
       .from('events')
       .select('*')
