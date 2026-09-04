@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
+import { todayLocalISO } from '../lib/date'
 import styles from './Events.module.css'
 
 function TicketLabel({ event }) {
@@ -55,7 +56,7 @@ export default function Events() {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const today = new Date().toISOString().split('T')[0]
+      const today = todayLocalISO()
       const [{ data, error }, { data: settingsData }] = await Promise.all([
         supabase.from('events').select('*').order('date', { ascending: true }),
         supabase.from('settings').select('tour_heading, past_shows_heading').eq('id', 1).single(),
