@@ -8,6 +8,12 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      # GitHub-runnere kjører UTC. date.test.js bygger på norsk lokaltid —
+      # den sjekker at 22:15 UTC regnes som 5. september, slik en besøkende
+      # i Norge ser det. Uten dette feiler den i CI og består lokalt, som er
+      # verre enn ingen test.
+      TZ: Europe/Oslo
     steps:
       - uses: actions/checkout@v4
 
