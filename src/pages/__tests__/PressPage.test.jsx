@@ -1,10 +1,34 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import { existsSync, readFileSync } from 'node:fs'
 import { crc32 } from 'node:zlib'
+import { vi } from 'vitest'
+
+vi.mock('../../lib/supabase', () => ({
+  supabase: {
+    from: vi.fn(),
+    storage: {
+      from: () => ({
+        getPublicUrl: (path) => ({ data: { publicUrl: `https://supabase.test/${path}` } }),
+      }),
+    },
+  },
+}))
+
+import { supabase } from '../../lib/supabase'
 import PressPage, { LOGOS, ZIP_FILE } from '../PressPage'
 import { ZIP_NAME, collectFiles, createZip, readZipEntries } from '../../../scripts/build-press-zip.js'
+
+function mockDocuments(rows) {
+  supabase.from.mockImplementation(() => ({
+    select: () => Promise.resolve({ data: rows, error: null }),
+  }))
+}
+
+beforeEach(() => {
+  mockDocuments([])
+})
 
 function renderPage() {
   return render(
@@ -89,4 +113,24 @@ test('siden tilbyr begge variantene som PNG i to størrelser og vektor-PDF', () 
       'PDF — vector, for print',
     ])
   }
+})
+
+test('dokumentseksjonen vises ikke når bandet ikke har lastet opp noe', async () => {
+  renderPage()
+
+  await waitFor(() => expect(screen.getByText('Using the logo')).toBeInTheDocument())
+  expect(screen.queryByText('Documents')).not.toBeInTheDocument()
+})
+
+test('dokumenter fra admin vises i sortert rekkefølge, med filtype', async () => {
+  mockDocuments([
+    { id: 2, label: 'Stageplot', storage_path: '2-stageplot.png', sort_order: 1, created_at: '2026-01-02' },
+    { id: 1, label: 'Teknisk rider', storage_path: '1-rider.pdf', sort_order: 0, created_at: '2026-01-01' },
+  ])
+
+  renderPage()
+
+  const links = await screen.findAllByRole('link', { name: /Teknisk rider|Stageplot/ })
+  expect(links.map((a) => a.textContent)).toEqual(['Teknisk riderPDF', 'StageplotPNG'])
+  expect(links[0]).toHaveAttribute('href', 'https://supabase.test/1-rider.pdf')
 })

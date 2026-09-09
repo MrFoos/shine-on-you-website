@@ -12,7 +12,10 @@
 
 **Galleri** — Last opp ett eller flere bilder. Dra for å sortere.
 
-**Press Kit** — Kommer snart.
+**Press Kit** — Last opp dokumenter til shineonyou.no/press: teknisk rider,
+stageplot, pressebilder. Gi hver fil en etikett — det er den besøkende ser.
+Dra for å sortere. Seksjonen vises ikke på siden før det ligger minst én fil
+her. Logoene styres ikke herfra; de ligger i koden, se BRANDING.md.
 
 **Innstillinger** — Endre overskrifter, fotokreditt og lenker til sosiale medier.
 
