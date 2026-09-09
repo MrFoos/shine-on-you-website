@@ -12,7 +12,7 @@ export const LOGOS = [
   {
     id: 'logo',
     name: 'Primary logo',
-    note: 'Wordmark with prism and light beam. Use this wherever there is room for the full mark.',
+    note: 'Wordmark with prism and light beam. Use this by default.',
     preview: `${BASE}/preview-logo.png`,
     // Prismet stikker over og under bokstavene, så motivet må vises høyere enn
     // navnetrekket for at «shine on you» skal bli like stor i de to kortene.
@@ -65,7 +65,7 @@ export default function PressPage() {
           <p className={styles.intro}>
             Logos and promotional material, free to use in coverage, posters and
             programmes. Small is sized for web and screen, large for print and big
-            surfaces. If you need something that is not here, get in touch with the band.
+            surfaces.
           </p>
 
           <div className={styles.sectionHead}>
