@@ -9,33 +9,33 @@ const BASE = '/press/logo'
 const LOGOS = [
   {
     id: 'logo',
-    name: 'Hovedlogo',
-    note: 'Navnetrekk med prisme og lysstråle. Bruk denne der det er plass til hele merket.',
+    name: 'Primary logo',
+    note: 'Wordmark with prism and light beam. Use this wherever there is room for the full mark.',
     preview: `${BASE}/preview-logo.png`,
     files: [
-      { label: 'PNG — svart bakgrunn', meta: '5367 × 2853', file: `${BASE}/shine-on-you-logo.png` },
+      { label: 'PNG — black background', meta: '5367 × 2853', file: `${BASE}/shine-on-you-logo.png` },
       { label: 'PNG — transparent', meta: '3579 × 1902', file: `${BASE}/shine-on-you-logo-transparent.png` },
-      { label: 'PDF — vektor, trykk', meta: 'Skalerbar', file: `${BASE}/shine-on-you-logo.pdf` },
+      { label: 'PDF — vector, for print', meta: 'Scalable', file: `${BASE}/shine-on-you-logo.pdf` },
     ],
   },
   {
     id: 'wordmark',
-    name: 'Navnetrekk',
-    note: 'Kun navnet, uten dekor. Bruk denne på små flater og der prismet ikke får plass.',
+    name: 'Wordmark',
+    note: 'The name on its own, without the prism. Use this on small surfaces and tight spaces.',
     preview: `${BASE}/preview-wordmark.png`,
     files: [
-      { label: 'PNG — svart bakgrunn', meta: '3854 × 2445', file: `${BASE}/shine-on-you-wordmark.png` },
+      { label: 'PNG — black background', meta: '3854 × 2445', file: `${BASE}/shine-on-you-wordmark.png` },
       { label: 'PNG — transparent', meta: '2601 × 1409', file: `${BASE}/shine-on-you-wordmark-transparent.png` },
-      { label: 'PDF — vektor, trykk', meta: 'Skalerbar', file: `${BASE}/shine-on-you-wordmark.pdf` },
+      { label: 'PDF — vector, for print', meta: 'Scalable', file: `${BASE}/shine-on-you-wordmark.pdf` },
     ],
   },
 ]
 
 const GUIDELINES = [
-  'Logoen er laget for mørk bakgrunn. På lys bakgrunn: bruk PNG-en med svart bakgrunn, eller sett logoen på en svart flate.',
-  'Ikke strekk, roter, beskjær eller endre fargene i logoen.',
-  'Hold luft rundt logoen — minst høyden på «s» i «shine» på alle sider.',
-  'Til trykk: bruk PDF-ene. De er vektor og kan skaleres fritt uten kvalitetstap.',
+  'The logo is made for dark backgrounds. On a light background, use the PNG with the black background, or place the logo on a black surface.',
+  'Do not stretch, rotate, crop or recolour the logo.',
+  'Keep clear space around the logo — at least the height of the "s" in "shine" on every side.',
+  'For print, use the PDFs. They are vector files and scale to any size without loss of quality.',
 ]
 
 export default function PressPage() {
@@ -43,7 +43,7 @@ export default function PressPage() {
     <div className="container">
       <SEO
         title="Press"
-        description="Logoer og promomateriell fra Shine On You."
+        description="Logos and promotional material from Shine On You."
         canonicalPath="/press"
       />
       <Helmet>
@@ -54,14 +54,14 @@ export default function PressPage() {
         <section className={styles.pressPage}>
           <h1>Press</h1>
           <p className={styles.intro}>
-            Logoer og promomateriell til fri bruk i omtale, plakater og program.
-            Spørsmål eller behov for noe som ikke ligger her — ta kontakt med bandet.
+            Logos and promotional material, free to use in coverage, posters and
+            programmes. If you need something that is not here, get in touch with the band.
           </p>
 
           <div className={styles.sectionHead}>
             <h2>Logo</h2>
             <a className={styles.zipBtn} href={`${BASE}/shine-on-you-logo.zip`} download>
-              Last ned alle logoer (ZIP, 2,4 MB)
+              Download all logos (ZIP, 2.4 MB)
             </a>
           </div>
 
@@ -88,7 +88,7 @@ export default function PressPage() {
           </div>
 
           <div className={styles.guidelines}>
-            <h2>Slik bruker du logoen</h2>
+            <h2>Using the logo</h2>
             <ul>
               {GUIDELINES.map((rule) => (
                 <li key={rule}>{rule}</li>

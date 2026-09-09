@@ -58,6 +58,12 @@
   }
 }
 
+.logoCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .logoCard h3 {
   margin: 0 0 8px;
   font-size: 20px;
@@ -99,7 +105,9 @@
 
 .fileList {
   list-style: none;
-  margin: 0;
+  /* auto-topp: holder filknappene i linje mellom kortene når
+     beskrivelsene er ulikt lange */
+  margin: auto 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
