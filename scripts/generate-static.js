@@ -110,10 +110,14 @@ const staticFallback = `<div id="static-fallback" aria-hidden="true" style="disp
 const indexPath = resolve(root, 'index.html')
 let indexHtml = readFileSync(indexPath, 'utf8')
 
-// Replace or insert static fallback inside #root
+// Replace or insert static fallback inside #root.
+// Uttrykket må stoppe på den siste </div> før <script>, ikke den første: kjøres
+// bygget på et tre der fallbacket allerede er injisert, treffer et ikke-grådig
+// uttrykk fallbackets egen </div> og etterlater rotdivens </div> — én ekstra
+// </div> for hvert bygg.
 indexHtml = indexHtml.replace(
-  /<div id="root">[\s\S]*?<\/div>/,
-  `<div id="root">${staticFallback}</div>`
+  /<div id="root">[\s\S]*?<\/div>\s*(?=<script|<\/body>)/,
+  `<div id="root">${staticFallback}</div>\n    `
 )
 
 writeFileSync(indexPath, indexHtml, 'utf8')

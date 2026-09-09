@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "node scripts/generate-static.js && vite build",
+    "dev": "node scripts/build-press-zip.js && vite",
+    "build": "node scripts/generate-static.js && node scripts/build-press-zip.js && vite build && node scripts/generate-press-html.js",
     "preview": "vite preview",
     "test": "vitest"
   },

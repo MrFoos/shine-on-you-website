@@ -26,7 +26,9 @@ jobs:
       - run: npm ci
 
       - name: Tester
-        run: npx vitest run
+        # `npm test -- --run` framfor `npx vitest run`, så CI og package.json
+        # ikke kan komme i utakt.
+        run: npm test -- --run
 
       - name: Produksjonsbuild
         # Dummy-verdier med vilje: dependabot-PR-er får ikke tilgang til

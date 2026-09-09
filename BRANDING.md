@@ -53,12 +53,51 @@ Update the logo across social profiles (Facebook, Instagram, YouTube) to match.
 
 ## Press page (`/press`)
 
-`/press` is an unlisted page — it is publicly reachable, but has no nav link, is
-not in `sitemap.xml`, and is `Disallow`-ed in `robots.txt` plus `noindex` in the
-markup until the new identity launches. The URL is shared directly with whoever
-needs the files.
+`/press` is an unlisted page — it is publicly reachable, but has no nav link and
+is not in `sitemap.xml`. The URL is shared directly with whoever needs the files.
 
-The downloads are static files in `public/press/logo/`:
+### How it is kept out of search
+
+The site is a SPA where every route is served from one `index.html`, so a
+`robots` meta tag rendered by react-helmet only exists after JavaScript has run.
+Two things cover the crawlers that do not run JS:
+
+1. `scripts/generate-press-html.js` writes `dist/press/index.html` after the
+   Vite build — same page, but with `noindex, nofollow` in the static markup and
+   without the homepage fallback that `generate-static.js` injects. nginx tries
+   `$uri/` before the SPA fallback (`/images/` answers 403, not the homepage),
+   so `/press/` is served from this file. Whether `/press` without the trailing
+   slash also resolves to it depends on the `try_files` line on the server —
+   verify after the first deploy:
+
+   ```sh
+   curl -s https://shineonyou.no/press | grep -c 'name="robots"'   # want 1
+   ```
+
+   If that returns 0, the header in point 2 is the fix.
+2. **Not yet in place:** an `X-Robots-Tag` header from nginx, which is the only
+   thing that also covers the files under `/press/logo/` — a meta tag cannot
+   protect a PNG or a PDF.
+
+   ```nginx
+   location ^~ /press {
+       add_header X-Robots-Tag "noindex, nofollow, noarchive" always;
+   }
+   ```
+
+There is deliberately **no** `Disallow: /press` in `robots.txt`. It would stop
+crawlers from ever reading the `noindex`, and a public robots.txt advertising
+the path is worse than saying nothing at all.
+
+Be clear about what this is: the page is on a public origin behind a guessable
+path. It keeps `/press` out of search results; it does not stop anyone who has
+the URL from passing it on. If a leak before launch would genuinely be a
+problem, move the route to something unguessable (`/press-a7f3c9`) — that is a
+one-line change in `App.jsx`.
+
+### The files
+
+Downloads are static files in `public/press/logo/`:
 
 | File | Contents |
 |---|---|
@@ -72,17 +111,23 @@ The downloads are static files in `public/press/logo/`:
 | `shine-on-you-wordmark-transparent.png` | Wordmark, transparent, 2601 × 1409 |
 | `shine-on-you-wordmark-transparent-small.png` | Wordmark, transparent, 1200 × 650 |
 | `shine-on-you-wordmark.pdf` | Wordmark, vector for print |
-| `shine-on-you-logo.zip` | All ten files bundled |
 | `preview-logo.png`, `preview-wordmark.png` | On-page display only |
 
-**When the logo changes:** replace the files, regenerate the ZIP
-(`cd public/press/logo && zip -j shine-on-you-logo.zip shine-on-you-*.png shine-on-you-*.pdf`),
-regenerate the 1200 px small variants, and update the pixel dimensions and the
-ZIP size in `src/pages/PressPage.jsx`.
+`shine-on-you-logos.zip` is **not** in git. `scripts/build-press-zip.js` packs
+every `shine-on-you-*.png|pdf` in that folder at build time, so the archive
+cannot fall behind the files it contains.
+
+**When the logo changes:** replace the files, regenerate the two 1200 px small
+variants and the two previews (previews are cropped to the artwork, transparent,
+1000 px wide), and update the pixel dimensions in `src/pages/PressPage.jsx`. The
+ZIP takes care of itself. `PressPage.test.jsx` fails if a stated dimension does
+not match the PNG on disk, if a linked file is missing, or if the ZIP would not
+contain exactly the files the page links to.
 
 **At launch:** add "Press" to the nav if the page should be public, drop the
-`noindex` in `PressPage.jsx` and `Disallow: /press` in `robots.txt`, and add the
-URL to `sitemap.xml`. If the page should stay unlisted, leave all of it as is.
+`noindex` (both in `PressPage.jsx` and in `generate-press-html.js`) and any
+`X-Robots-Tag` rule, and add the URL to `sitemap.xml`. If the page should stay
+unlisted, leave all of it as is.
 
 Note: the whole identity is drawn for a **black background** — the transparent
 PNGs have white lettering and disappear on light backgrounds. There is no dark

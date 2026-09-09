@@ -6,12 +6,17 @@ import styles from './PressPage.module.css'
 
 const BASE = '/press/logo'
 
-const LOGOS = [
+export const ZIP_FILE = `${BASE}/shine-on-you-logos.zip`
+
+export const LOGOS = [
   {
     id: 'logo',
     name: 'Primary logo',
     note: 'Wordmark with prism and light beam. Use this wherever there is room for the full mark.',
     preview: `${BASE}/preview-logo.png`,
+    // Prismet stikker over og under bokstavene, så motivet må vises høyere enn
+    // navnetrekket for at «shine on you» skal bli like stor i de to kortene.
+    tallPreview: true,
     files: [
       { label: 'PNG — black background, small', meta: '1200 × 638', file: `${BASE}/shine-on-you-logo-small.png` },
       { label: 'PNG — black background, large', meta: '5367 × 2853', file: `${BASE}/shine-on-you-logo.png` },
@@ -65,23 +70,32 @@ export default function PressPage() {
 
           <div className={styles.sectionHead}>
             <h2>Logo</h2>
-            <a className={styles.zipBtn} href={`${BASE}/shine-on-you-logo.zip`} download>
-              Download all logos (ZIP, 2.7 MB)
+            <a className={styles.zipBtn} href={ZIP_FILE} download>
+              Download all logos (ZIP)
             </a>
           </div>
 
           <div className={styles.logoGrid}>
             {LOGOS.map((logo) => (
               <article key={logo.id} className={styles.logoCard}>
-                <div className={styles.preview}>
-                  <img src={logo.preview} alt={`Shine On You – ${logo.name}`} loading="lazy" />
+                <div
+                  className={[styles.preview, logo.tallPreview ? styles.previewTall : '']
+                    .filter(Boolean)
+                    .join(' ')}
+                >
+                  <img src={logo.preview} alt={`Shine On You – ${logo.name}`} />
                 </div>
                 <h3>{logo.name}</h3>
                 <p className={styles.note}>{logo.note}</p>
                 <ul className={styles.fileList}>
                   {logo.files.map(({ label, meta, file }) => (
                     <li key={file}>
-                      <a href={file} download className={styles.fileBtn}>
+                      <a
+                        href={file}
+                        download
+                        className={styles.fileBtn}
+                        aria-label={`${logo.name} — ${label}, ${meta}`}
+                      >
                         <span className={styles.fileLabel}>{label}</span>
                         <span className={styles.fileMeta}>{meta}</span>
                       </a>
