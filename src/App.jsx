@@ -6,6 +6,7 @@ import AboutPage from './pages/AboutPage'
 import GalleryPage from './pages/GalleryPage'
 import TourPage from './pages/TourPage'
 import VideosPage from './pages/VideosPage'
+import PressPage from './pages/PressPage'
 import AdminLogin from './pages/admin/AdminLogin'
 import AdminDashboard from './pages/admin/AdminDashboard'
 
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/tour" element={<TourPage />} />
           <Route path="/videos" element={<VideosPage />} />
+          <Route path="/press" element={<PressPage />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route
             path="/admin"

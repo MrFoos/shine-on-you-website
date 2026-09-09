@@ -5,3 +5,6 @@ dist
 .vite
 shineonyou-arkitektur.html
 ny logo/
+
+# Bygges av scripts/build-press-zip.js
+public/press/logo/*.zip
