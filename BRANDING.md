@@ -50,3 +50,34 @@ Update the logo across social profiles (Facebook, Instagram, YouTube) to match.
 | `favicon-new-512.png` | Favicon — new identity |
 | `og-image-legacy.png` | Social share image — promo period |
 | `og-image.png` | Social share image — new identity |
+
+## Press-side (`/press`)
+
+`/press` er en upublisert side — den ligger åpent, men har ingen nav-lenke, står
+ikke i `sitemap.xml` og er `Disallow`-et i `robots.txt` + `noindex` inntil den
+nye identiteten er lansert. URL-en deles direkte med de som skal ha filene.
+
+Nedlastingsfilene ligger som statiske filer i `public/press/logo/`:
+
+| Fil | Innhold |
+|---|---|
+| `shine-on-you-logo.png` | Hovedlogo (med dekor), svart bakgrunn, 5367 × 2853 |
+| `shine-on-you-logo-transparent.png` | Hovedlogo, transparent, 3579 × 1902 |
+| `shine-on-you-logo.pdf` | Hovedlogo, vektor til trykk |
+| `shine-on-you-wordmark.png` | Navnetrekk, svart bakgrunn, 3854 × 2445 |
+| `shine-on-you-wordmark-transparent.png` | Navnetrekk, transparent, 2601 × 1409 |
+| `shine-on-you-wordmark.pdf` | Navnetrekk, vektor til trykk |
+| `shine-on-you-logo.zip` | Alle seks filene samlet |
+| `preview-logo.png`, `preview-wordmark.png` | Kun visning på siden |
+
+**Ved endring av logo:** bytt filene, generer ZIP-en på nytt
+(`cd public/press/logo && zip -j shine-on-you-logo.zip shine-on-you-*.png shine-on-you-*.pdf`),
+og oppdater pikselmålene i `src/pages/PressPage.jsx`.
+
+**Ved lansering:** legg «Press» inn i nav om den skal være offentlig, fjern
+`noindex` i `PressPage.jsx` og `Disallow: /press` i `robots.txt`, og legg URL-en
+i `sitemap.xml`. Skal siden fortsatt være uoppført, la alt stå som det er.
+
+Merk: hele identiteten er tegnet for **svart bakgrunn** — de transparente PNG-ene
+har hvit tekst og blir usynlige på lys bakgrunn. Det finnes ingen mørk variant av
+navnetrekket til bruk på lyse flater.
