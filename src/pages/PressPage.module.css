@@ -168,3 +168,12 @@
 .guidelines li {
   margin-bottom: 12px;
 }
+
+.documents {
+  max-width: 720px;
+  margin: 0 auto 64px;
+}
+
+.documents h2 {
+  margin-bottom: 24px;
+}

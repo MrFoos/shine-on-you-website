@@ -1,7 +1,10 @@
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import SEO from '../components/SEO'
+import { supabase } from '../lib/supabase'
+import { sortPressKitFiles } from '../lib/presskit'
 import styles from './PressPage.module.css'
 
 const BASE = '/press/logo'
@@ -48,6 +51,17 @@ const GUIDELINES = [
 ]
 
 export default function PressPage() {
+  // Dokumentene bandet selv laster opp i admin — rider, stageplot og lignende.
+  // Logoene over ligger i repoet, se BRANDING.md for hvorfor.
+  const [documents, setDocuments] = useState([])
+
+  useEffect(() => {
+    supabase
+      .from('presskit_files')
+      .select('*')
+      .then(({ data }) => setDocuments(sortPressKitFiles(data)))
+  }, [])
+
   return (
     <div className="container">
       <SEO
@@ -105,6 +119,28 @@ export default function PressPage() {
               </article>
             ))}
           </div>
+
+          {documents.length > 0 && (
+            <div className={styles.documents}>
+              <h2>Documents</h2>
+              <ul className={styles.fileList}>
+                {documents.map((doc) => (
+                  <li key={doc.id}>
+                    <a
+                      href={supabase.storage.from('presskit').getPublicUrl(doc.storage_path).data.publicUrl}
+                      download
+                      className={styles.fileBtn}
+                    >
+                      <span className={styles.fileLabel}>{doc.label}</span>
+                      <span className={styles.fileMeta}>
+                        {doc.storage_path.split('.').pop().toUpperCase()}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <div className={styles.guidelines}>
             <h2>Using the logo</h2>

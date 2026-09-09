@@ -95,7 +95,25 @@ the URL from passing it on. If a leak before launch would genuinely be a
 problem, move the route to something unguessable (`/press-a7f3c9`) — that is a
 one-line change in `App.jsx`.
 
-### The files
+### Two sources, on purpose
+
+The page has two kinds of downloads, and they are managed in different places:
+
+| | Logos | Documents |
+|---|---|---|
+| Lives in | `public/press/logo/` in this repo | Supabase (`presskit_files` + `presskit` bucket) |
+| Managed by | a developer, at build time | the band, in admin → Press Kit |
+| Why | needs derived sizes, previews and a ZIP; must not be deletable by accident; changes once per identity | handed to the visitor as uploaded; changes whenever a rider does |
+
+The Documents section is hidden entirely until the band uploads something, so
+the page reads as finished while the table is empty.
+
+One caveat worth remembering before launch: files uploaded in admin are served
+from Supabase's own origin, not from shineonyou.no. They are **not** covered by
+the `noindex` above or by any `X-Robots-Tag` we add to nginx. Do not upload
+anything showing the new identity until it is public.
+
+### The logo files
 
 Downloads are static files in `public/press/logo/`:
 
