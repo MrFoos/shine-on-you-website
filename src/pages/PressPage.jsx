@@ -13,8 +13,10 @@ const LOGOS = [
     note: 'Wordmark with prism and light beam. Use this wherever there is room for the full mark.',
     preview: `${BASE}/preview-logo.png`,
     files: [
-      { label: 'PNG — black background', meta: '5367 × 2853', file: `${BASE}/shine-on-you-logo.png` },
-      { label: 'PNG — transparent', meta: '3579 × 1902', file: `${BASE}/shine-on-you-logo-transparent.png` },
+      { label: 'PNG — black background, small', meta: '1200 × 638', file: `${BASE}/shine-on-you-logo-small.png` },
+      { label: 'PNG — black background, large', meta: '5367 × 2853', file: `${BASE}/shine-on-you-logo.png` },
+      { label: 'PNG — transparent, small', meta: '1200 × 638', file: `${BASE}/shine-on-you-logo-transparent-small.png` },
+      { label: 'PNG — transparent, large', meta: '3579 × 1902', file: `${BASE}/shine-on-you-logo-transparent.png` },
       { label: 'PDF — vector, for print', meta: 'Scalable', file: `${BASE}/shine-on-you-logo.pdf` },
     ],
   },
@@ -24,8 +26,10 @@ const LOGOS = [
     note: 'The name on its own, without the prism. Use this on small surfaces and tight spaces.',
     preview: `${BASE}/preview-wordmark.png`,
     files: [
-      { label: 'PNG — black background', meta: '3854 × 2445', file: `${BASE}/shine-on-you-wordmark.png` },
-      { label: 'PNG — transparent', meta: '2601 × 1409', file: `${BASE}/shine-on-you-wordmark-transparent.png` },
+      { label: 'PNG — black background, small', meta: '1200 × 761', file: `${BASE}/shine-on-you-wordmark-small.png` },
+      { label: 'PNG — black background, large', meta: '3854 × 2445', file: `${BASE}/shine-on-you-wordmark.png` },
+      { label: 'PNG — transparent, small', meta: '1200 × 650', file: `${BASE}/shine-on-you-wordmark-transparent-small.png` },
+      { label: 'PNG — transparent, large', meta: '2601 × 1409', file: `${BASE}/shine-on-you-wordmark-transparent.png` },
       { label: 'PDF — vector, for print', meta: 'Scalable', file: `${BASE}/shine-on-you-wordmark.pdf` },
     ],
   },
@@ -55,13 +59,14 @@ export default function PressPage() {
           <h1>Press</h1>
           <p className={styles.intro}>
             Logos and promotional material, free to use in coverage, posters and
-            programmes. If you need something that is not here, get in touch with the band.
+            programmes. Small is sized for web and screen, large for print and big
+            surfaces. If you need something that is not here, get in touch with the band.
           </p>
 
           <div className={styles.sectionHead}>
             <h2>Logo</h2>
             <a className={styles.zipBtn} href={`${BASE}/shine-on-you-logo.zip`} download>
-              Download all logos (ZIP, 2.4 MB)
+              Download all logos (ZIP, 2.7 MB)
             </a>
           </div>
 

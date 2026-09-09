@@ -36,5 +36,5 @@ test('logofilene tilbys som ZIP, PNG og vektor-PDF', () => {
 
   expect(hrefs).toContain('/press/logo/shine-on-you-logo.zip')
   expect(hrefs.filter((h) => h?.endsWith('.pdf'))).toHaveLength(2)
-  expect(hrefs.filter((h) => h?.startsWith('/press/') && h.endsWith('.png'))).toHaveLength(4)
+  expect(hrefs.filter((h) => h?.startsWith('/press/') && h.endsWith('.png'))).toHaveLength(8)
 })

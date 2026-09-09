@@ -63,17 +63,22 @@ The downloads are static files in `public/press/logo/`:
 | File | Contents |
 |---|---|
 | `shine-on-you-logo.png` | Primary logo (with prism), black background, 5367 × 2853 |
+| `shine-on-you-logo-small.png` | Primary logo, black background, 1200 × 638 |
 | `shine-on-you-logo-transparent.png` | Primary logo, transparent, 3579 × 1902 |
+| `shine-on-you-logo-transparent-small.png` | Primary logo, transparent, 1200 × 638 |
 | `shine-on-you-logo.pdf` | Primary logo, vector for print |
 | `shine-on-you-wordmark.png` | Wordmark, black background, 3854 × 2445 |
+| `shine-on-you-wordmark-small.png` | Wordmark, black background, 1200 × 761 |
 | `shine-on-you-wordmark-transparent.png` | Wordmark, transparent, 2601 × 1409 |
+| `shine-on-you-wordmark-transparent-small.png` | Wordmark, transparent, 1200 × 650 |
 | `shine-on-you-wordmark.pdf` | Wordmark, vector for print |
-| `shine-on-you-logo.zip` | All six files bundled |
+| `shine-on-you-logo.zip` | All ten files bundled |
 | `preview-logo.png`, `preview-wordmark.png` | On-page display only |
 
 **When the logo changes:** replace the files, regenerate the ZIP
 (`cd public/press/logo && zip -j shine-on-you-logo.zip shine-on-you-*.png shine-on-you-*.pdf`),
-and update the pixel dimensions in `src/pages/PressPage.jsx`.
+regenerate the 1200 px small variants, and update the pixel dimensions and the
+ZIP size in `src/pages/PressPage.jsx`.
 
 **At launch:** add "Press" to the nav if the page should be public, drop the
 `noindex` in `PressPage.jsx` and `Disallow: /press` in `robots.txt`, and add the
