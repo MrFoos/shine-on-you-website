@@ -1,12 +1,13 @@
 # Brand switch — promo (old logo) → autumn (new logo)
 
-The site currently runs the **old identity** to match active social promo.
-The **new identity** (logo, favicon, OG image) is already in the repo, ready.
-The nav already shows the new wordmark as a soft preview — leave it as-is.
+The site currently runs the **old identity** for the hero logo and the social
+share image, to match active social promo. Two pieces have already moved to the
+new identity as a soft preview: the **nav wordmark**, and the **favicon** (since
+11 September 2026). Leave both as they are.
 
-## To go live with the new identity (autumn launch)
+## To go live with the new identity (3 October 2026)
 
-Change **two files**:
+Change **one file**:
 
 ### 1. `src/config/branding.js`
 Comment the `LEGACY` lines, uncomment the `new` lines for both exports:
@@ -19,19 +20,8 @@ export const HERO_LOGO = '/images/logo-full.png'        // ← uncomment this
 export const OG_IMAGE = '/images/og-image.png'            // ← uncomment this
 ```
 
-### 2. `index.html`
-Swap the favicon block — comment out the legacy block, uncomment the new block:
-
-```html
-<!-- legacy block: comment this out -->
-<!-- <link rel="icon" type="image/x-icon" href="/images/favicon-legacy.ico" /> -->
-<!-- <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-legacy.png" /> -->
-<!-- <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-legacy.png" /> -->
-
-<!-- new block: uncomment this -->
-<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-new-512.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-new-512.png" />
-```
+### 2. `index.html` — already done
+The favicon block was swapped on 11 September 2026. Nothing left to do here.
 
 Then **commit + deploy**. No admin or database changes needed.
 
@@ -46,8 +36,8 @@ Update the logo across social profiles (Facebook, Instagram, YouTube) to match.
 | `logo-legacy.png` | Hero logo — promo period |
 | `logo-full.png` | Hero logo — new identity |
 | `logo-wordmark.png` | Nav — always new (soft preview) |
-| `favicon-legacy.ico` | Favicon — promo period |
-| `favicon-new-512.png` | Favicon — new identity |
+| `favicon-legacy.ico` | Favicon — promo period, no longer referenced |
+| `favicon-new-512.png` | Favicon — new identity, live since 11 Sep 2026 |
 | `og-image-legacy.png` | Social share image — promo period |
 | `og-image.png` | Social share image — new identity |
 
@@ -66,15 +56,15 @@ Two things cover the crawlers that do not run JS:
    Vite build — same page, but with `noindex, nofollow` in the static markup and
    without the homepage fallback that `generate-static.js` injects. nginx tries
    `$uri/` before the SPA fallback (`/images/` answers 403, not the homepage),
-   so `/press/` is served from this file. Whether `/press` without the trailing
-   slash also resolves to it depends on the `try_files` line on the server —
-   verify after the first deploy:
+   so `/press` redirects to `/press/` and is served from this file. Verified in
+   production on 11 September 2026:
 
    ```sh
-   curl -s https://shineonyou.no/press | grep -c 'name="robots"'   # want 1
+   curl -sL https://shineonyou.no/press | grep -c 'name="robots"'   # 1
    ```
 
-   If that returns 0, the header in point 2 is the fix.
+   Note the `-L`: without it curl stops at the 301 and reports 0, which says
+   nothing about the page behind the redirect.
 2. An `X-Robots-Tag` header from nginx — the only thing that also covers the
    files under `/press/logo/`, since a meta tag cannot protect a PNG or a PDF.
    **In place since 11 September 2026**, as
