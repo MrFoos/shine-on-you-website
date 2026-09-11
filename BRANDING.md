@@ -56,15 +56,15 @@ Two things cover the crawlers that do not run JS:
    Vite build — same page, but with `noindex, nofollow` in the static markup and
    without the homepage fallback that `generate-static.js` injects. nginx tries
    `$uri/` before the SPA fallback (`/images/` answers 403, not the homepage),
-   so `/press/` is served from this file. Whether `/press` without the trailing
-   slash also resolves to it depends on the `try_files` line on the server —
-   verify after the first deploy:
+   so `/press` redirects to `/press/` and is served from this file. Verified in
+   production on 11 September 2026:
 
    ```sh
-   curl -s https://shineonyou.no/press | grep -c 'name="robots"'   # want 1
+   curl -sL https://shineonyou.no/press | grep -c 'name="robots"'   # 1
    ```
 
-   If that returns 0, the header in point 2 is the fix.
+   Note the `-L`: without it curl stops at the 301 and reports 0, which says
+   nothing about the page behind the redirect.
 2. An `X-Robots-Tag` header from nginx — the only thing that also covers the
    files under `/press/logo/`, since a meta tag cannot protect a PNG or a PDF.
    **In place since 11 September 2026**, as
