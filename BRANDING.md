@@ -75,15 +75,22 @@ Two things cover the crawlers that do not run JS:
    ```
 
    If that returns 0, the header in point 2 is the fix.
-2. **Not yet in place:** an `X-Robots-Tag` header from nginx, which is the only
-   thing that also covers the files under `/press/logo/` — a meta tag cannot
-   protect a PNG or a PDF.
+2. An `X-Robots-Tag` header from nginx — the only thing that also covers the
+   files under `/press/logo/`, since a meta tag cannot protect a PNG or a PDF.
+   **In place since 11 September 2026**, as
+   `/etc/nginx/snippets/press-noindex.conf` on the web server, included from the
+   `shineonyou.no` server block in `sites-available/shineonyou`:
 
    ```nginx
    location ^~ /press {
        add_header X-Robots-Tag "noindex, nofollow, noarchive" always;
+       try_files $uri $uri/ /index.html;
    }
    ```
+
+   `try_files` is repeated because this block overrides `location /` for these
+   paths. The server config is not in this repo, so the snippet has to be
+   removed by hand at launch — see below.
 
 There is deliberately **no** `Disallow: /press` in `robots.txt`. It would stop
 crawlers from ever reading the `noindex`, and a public robots.txt advertising
@@ -143,9 +150,17 @@ not match the PNG on disk, if a linked file is missing, or if the ZIP would not
 contain exactly the files the page links to.
 
 **At launch:** add "Press" to the nav if the page should be public, drop the
-`noindex` (both in `PressPage.jsx` and in `generate-press-html.js`) and any
-`X-Robots-Tag` rule, and add the URL to `sitemap.xml`. If the page should stay
-unlisted, leave all of it as is.
+`noindex` in `PressPage.jsx` and in `generate-press-html.js`, add the URL to
+`sitemap.xml`, and remove the nginx snippet on the server:
+
+```sh
+# On the web server — this repo does not hold the host or the credentials.
+rm /etc/nginx/snippets/press-noindex.conf
+sed -i '/press-noindex/d' /etc/nginx/sites-available/shineonyou
+nginx -t && systemctl reload nginx
+```
+
+If the page should stay unlisted, leave all of it as is.
 
 Note: the whole identity is drawn for a **black background** — the transparent
 PNGs have white lettering and disappear on light backgrounds. There is no dark
