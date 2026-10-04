@@ -10,6 +10,23 @@
          src/config/branding.js. The legacy favicon files stay in the repo. -->
     <link rel="icon" type="image/png" sizes="512x512" href="/images/favicon-new-512.png" />
     <link rel="apple-touch-icon" href="/images/favicon-new-512.png" />
+    <!-- Statiske delingstagger for crawlere som ikke kjører JavaScript (Facebook,
+         LinkedIn, Slack, iMessage). SEO.jsx skriver de sidespesifikke taggene når
+         appen starter, og main.jsx fjerner disse først. og:url er utelatt med
+         vilje: denne filen serveres for alle ruter. Bildet må følge OG_IMAGE i
+         src/config/branding.js — staticHead.test.js feiler hvis de spriker. -->
+    <meta property="og:type" content="website" data-static-social />
+    <meta property="og:site_name" content="Shine On You" data-static-social />
+    <meta property="og:title" content="Shine On You – Pink Floyd Tribute Band" data-static-social />
+    <meta property="og:description" content="Shine On You is Scandinavia's premier Pink Floyd tribute band. Performing classics from The Dark Side of the Moon, The Wall and Wish You Were Here and more." data-static-social />
+    <meta property="og:image" content="https://shineonyou.no/images/og-image.png" data-static-social />
+    <meta property="og:image:width" content="1790" data-static-social />
+    <meta property="og:image:height" content="951" data-static-social />
+    <meta property="og:image:alt" content="Shine On You logo" data-static-social />
+    <meta name="twitter:card" content="summary_large_image" data-static-social />
+    <meta name="twitter:title" content="Shine On You – Pink Floyd Tribute Band" data-static-social />
+    <meta name="twitter:description" content="Shine On You is Scandinavia's premier Pink Floyd tribute band. Performing classics from The Dark Side of the Moon, The Wall and Wish You Were Here and more." data-static-social />
+    <meta name="twitter:image" content="https://shineonyou.no/images/og-image.png" data-static-social />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
     <script defer src="https://cloud.umami.is/script.js" data-website-id="6bda9b9b-037a-4b1a-87af-0341b1e12203"></script>
   </head>
