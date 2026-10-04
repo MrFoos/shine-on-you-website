@@ -17,6 +17,12 @@ The earlier values are kept there as comments. To roll back, swap the comments,
 then **commit + deploy**. No admin or database changes needed. The favicon is
 set separately, in `index.html`.
 
+`index.html` also carries a static copy of the share tags (`og:image`,
+`twitter:image` and friends), because Facebook and most other link-preview
+crawlers do not run JavaScript and never see what `SEO.jsx` writes. If
+`OG_IMAGE` changes, change the image URL and its width/height there too —
+`src/__tests__/staticHead.test.js` fails until they agree.
+
 ## At the same time
 
 Update the logo across social profiles (Facebook, Instagram, YouTube) to match.
