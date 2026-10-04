@@ -67,9 +67,10 @@
 }
 
 .heroLogo {
-  height: 170px;
-  width: auto;
+  width: 486px;
+  height: auto;
   max-width: 100%;
+  aspect-ratio: 2945 / 1454;
   object-fit: contain;
   align-self: flex-start;
 }
@@ -191,7 +192,7 @@
   }
 
   .heroLogo {
-    height: 100px;
+    width: 304px;
   }
 
   .tagline {

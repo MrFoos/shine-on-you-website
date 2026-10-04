@@ -1,29 +1,21 @@
 # Brand switch — promo (old logo) → autumn (new logo)
 
-The site currently runs the **old identity** for the hero logo and the social
-share image, to match active social promo. Two pieces have already moved to the
-new identity as a soft preview: the **nav wordmark**, and the **favicon** (since
-11 September 2026). Leave both as they are.
+The site runs the **new identity** everywhere. The nav wordmark came first as a
+soft preview, the favicon followed on 11 September 2026, and the **hero logo**
+and the **social share image** switched at the launch in October 2026.
 
-## To go live with the new identity (3 October 2026)
+## How the switch is wired
 
-Change **one file**:
-
-### 1. `src/config/branding.js`
-Comment the `LEGACY` lines, uncomment the `new` lines for both exports:
+Hero logo and share image are set in **one file**, `src/config/branding.js`:
 
 ```js
-// export const HERO_LOGO = '/images/logo-legacy.png'  // ← comment this out
-export const HERO_LOGO = '/images/logo-full.png'        // ← uncomment this
-
-// export const OG_IMAGE = '/images/og-image-legacy.png'  // ← comment this out
-export const OG_IMAGE = '/images/og-image.png'            // ← uncomment this
+export const HERO_LOGO = '/images/logo-full.png'   // ← live
+export const OG_IMAGE = '/images/og-image.png'     // ← live
 ```
 
-### 2. `index.html` — already done
-The favicon block was swapped on 11 September 2026. Nothing left to do here.
-
-Then **commit + deploy**. No admin or database changes needed.
+The earlier values are kept there as comments. To roll back, swap the comments,
+then **commit + deploy**. No admin or database changes needed. The favicon is
+set separately, in `index.html`.
 
 ## At the same time
 
@@ -33,13 +25,14 @@ Update the logo across social profiles (Facebook, Instagram, YouTube) to match.
 
 | File | Used for |
 |---|---|
-| `logo-legacy.png` | Hero logo — promo period |
-| `logo-full.png` | Hero logo — new identity |
-| `logo-wordmark.png` | Nav — always new (soft preview) |
+| `logo-legacy.png` | Hero logo — old identity, no longer referenced |
+| `logo-wordmark-transparent.png` | Hero logo — promo period (text only), no longer referenced |
+| `logo-full.png` | Hero logo — new identity, transparent, cropped to the artwork |
+| `logo-wordmark.png` | Nav |
 | `favicon-legacy.ico` | Favicon — promo period, no longer referenced |
 | `favicon-new-512.png` | Favicon — new identity, live since 11 Sep 2026 |
-| `og-image-legacy.png` | Social share image — promo period |
-| `og-image.png` | Social share image — new identity |
+| `og-image-legacy.png` | Social share image — old identity, no longer referenced |
+| `og-image.png` | Social share image — new identity, opaque black background |
 
 ## Press page (`/press`)
 
@@ -88,9 +81,9 @@ the path is worse than saying nothing at all.
 
 Be clear about what this is: the page is on a public origin behind a guessable
 path. It keeps `/press` out of search results; it does not stop anyone who has
-the URL from passing it on. If a leak before launch would genuinely be a
-problem, move the route to something unguessable (`/press-a7f3c9`) — that is a
-one-line change in `App.jsx`.
+the URL from passing it on. If that ever becomes a problem, move the route to
+something unguessable (`/press-a7f3c9`) — that is a one-line change in
+`App.jsx`.
 
 ### Two sources, on purpose
 
@@ -105,10 +98,10 @@ The page has two kinds of downloads, and they are managed in different places:
 The Documents section is hidden entirely until the band uploads something, so
 the page reads as finished while the table is empty.
 
-One caveat worth remembering before launch: files uploaded in admin are served
-from Supabase's own origin, not from shineonyou.no. They are **not** covered by
-the `noindex` above or by any `X-Robots-Tag` we add to nginx. Do not upload
-anything showing the new identity until it is public.
+One caveat: files uploaded in admin are served from Supabase's own origin, not
+from shineonyou.no. They are **not** covered by the `noindex` above or by any
+`X-Robots-Tag` we add to nginx. Since the October 2026 launch the new identity
+is public, so this only matters for documents that should not be findable.
 
 ### The logo files
 
@@ -139,9 +132,11 @@ ZIP takes care of itself. `PressPage.test.jsx` fails if a stated dimension does
 not match the PNG on disk, if a linked file is missing, or if the ZIP would not
 contain exactly the files the page links to.
 
-**At launch:** add "Press" to the nav if the page should be public, drop the
-`noindex` in `PressPage.jsx` and in `generate-press-html.js`, add the URL to
-`sitemap.xml`, and remove the nginx snippet on the server:
+**The page stays unlisted after the launch** (decided 4 October 2026): the band
+hands the URL to whoever needs it, so the `noindex` layers above remain. Should
+it ever go public, add "Press" to the nav, drop the `noindex` in `PressPage.jsx`
+and in `generate-press-html.js`, add the URL to `sitemap.xml`, and remove the
+nginx snippet on the server:
 
 ```sh
 # On the web server — this repo does not hold the host or the credentials.
@@ -149,8 +144,6 @@ rm /etc/nginx/snippets/press-noindex.conf
 sed -i '/press-noindex/d' /etc/nginx/sites-available/shineonyou
 nginx -t && systemctl reload nginx
 ```
-
-If the page should stay unlisted, leave all of it as is.
 
 Note: the whole identity is drawn for a **black background** — the transparent
 PNGs have white lettering and disappear on light backgrounds. There is no dark
