@@ -8,3 +8,6 @@ ny logo/
 
 # Bygges av scripts/build-press-zip.js
 public/press/logo/*.zip
+
+# Generert av scripts/generate-static.js ved build
+public/llms.txt
