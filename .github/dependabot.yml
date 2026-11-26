@@ -5,3 +5,12 @@ updates:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+    groups:
+      # react og react-dom må ha nøyaktig samme versjon. Hver for seg feiler
+      # den ene PR-en eller gir et ødelagt bygg (så det skjedde med 19.3.1).
+      react:
+        patterns: ["react", "react-dom", "@types/react", "@types/react-dom"]
+      minor-og-patch:
+        update-types: ["minor", "patch"]
